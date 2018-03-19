@@ -1,129 +1,225 @@
-<body class="cnt-home">
-<!-- ============================================== HEADER ============================================== -->
-<header class="header-style-1">
-
-    <!-- ============================================== TOP MENU ============================================== -->
-    <div class="top-bar animate-dropdown">
-        <div class="container">
-            <div class="header-top-inner">
-                <div class="cnt-account">
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url().'Home/Sign_In'?>"><i class="icon fa fa-lock"></i>Register</a></li>
-                        <li><a href="<?= base_url().'Home/Sign_In'?>"><i class="icon fa fa-lock"></i>Login</a></li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <!-- ============================================== TOP MENU : END ============================================== -->
-    <div class="main-header">
+<body>
+<div id="page-wraper">
+<header>
+    <!-- header-top-area-start -->
+    <div class="header-top-area" id="sticky-header">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
-                    <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo">
-                        <a href="<?= base_url() ?>"> <img style="height: 70px; margin-top: -28px;" src="<?= base_url()?>uploads/<?= $company_info['logo']; ?>" alt="<?= $company_info['name']; ?>"> </a>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <!-- logo-area-start -->
+                    <div class="logo-area">
+                        <a href="index.html"><img src="<?= base_url()?>frontend_assets/img/logo/1.png" alt="logo" /></a>
                     </div>
-                    <!-- ============================================================= LOGO : END ============================================================= --> </div>
+                    <!-- logo-area-end -->
+                </div>
+                <div class="col-lg-7 col-md-7 hidden-sm hidden-xs">
+                    <!-- menu-area-start -->
+                    <div class="menu-area">
+                        <nav>
+                            <ul>
+                                <li class="active"><a href="index.html">Home</a>
+                                </li>
+                                <?php
+                                $category = $this->Admin_model->getAll('category');
 
+                                for ($i = 0; $i < count($category); $i++) { $id = $category[$i]['id']; ?>
+                                <li><a href="shop.html"><?=$category[$i]['name']?></a>
+                                    <ul class="mega-menu">
+                                        <?php  $sub_category = $this->Home_model->getByIdImran('sub_category',array('cat_id'=>$id));
+                                        //print_r($sub_category);
 
-                <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
-                    <!-- /.contact-row -->
-                    <!-- ============================================================= SEARCH AREA ============================================================= -->
-                    <div class="search-area">
-                        <form>
-                            <div class="control-group">
-                                <ul class="categories-filter animate-dropdown">
-                                    <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                                        <ul class="dropdown-menu" role="menu" >
-                                            <li class="menu-header">Computer</li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <input class="search-field" placeholder="Search here..." />
-                                <a class="search-button" href="#" ></a> </div>
-                        </form>
+                                        foreach ($sub_category as $sub_category) { $sid = $sub_category['id']; ?>
+                                        <li><a href="#"><?=$sub_category['name']?></a>
+                                            <ul class="sub-menu-2">
+                                                <?php  $brand = $this->Home_model->getByIdImran('brands',array('sub_cat_id'=>$sid));
+                                                //print_r($sub_category);
+                                                foreach($brand as $brand) { ?>
+                                                <li><a href="shop.html"><?php echo $brand['name'];?></a></li>
+                                                <?php } ?>
+                                            </ul>
+                                        </li>
+                                        <?php } ?>
+
+                                    </ul>
+                                </li>
+                                <?php } ?>
+
+                            </ul>
+                        </nav>
                     </div>
-                    <!-- /.search-area -->
-                    <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
-                <!-- /.top-search-holder -->
-
-                <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
-                    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-
-                    <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
-                            <div class="items-cart-inner">
-                                <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                                <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span class="total-price"> <span class="sign">$</span><span class="value">600.00</span> </span> </div>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="cart-item product-summary">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="image"> <a href="detail.html"><img src="<?= base_url()?>frontend_assets/images/cart.jpg" alt=""></a> </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <h3 class="name"><a href="index8a95.html?page-detail">Simple Product</a></h3>
-                                            <div class="price">$600.00</div>
-                                        </div>
-                                        <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                    <!-- menu-area-end -->
+                </div>
+                <div class="col-lg-3 col-md-3 com-sm-6 col-xs-6">
+                    <!-- header-right-area-start -->
+                    <div class="header-right-area">
+                        <ul>
+                            <li><a id="show-search" href="#"><i class="icon ion-ios-search-strong"></i></a>
+                                <div class="search-content" id="hide-search">
+                                    <div class="search-text">
+                                        <h1>Search</h1>
+                                        <form action="#">
+                                            <input type="text" placeholder="search"/>
+                                            <button class="btn" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                                <!-- /.cart-item -->
-                                <div class="clearfix"></div>
-                                <hr>
-                                <div class="clearfix cart-total">
-                                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
-                                    <div class="clearfix"></div>
-                                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
-                                <!-- /.cart-total-->
-
+                            </li>
+                            <li><a href="cart.html"><i class="icon ion-bag"></i></a>
+                                <span>2</span>
+                                <div class="mini-cart-sub">
+                                    <div class="cart-product">
+                                        <div class="single-cart">
+                                            <div class="cart-img">
+                                                <a href="#"><img src="<?= base_url()?>frontend_assets/img/product/1.jpg" alt="book" /></a>
+                                            </div>
+                                            <div class="cart-info">
+                                                <h5><a href="#">Joust Duffle Bag</a></h5>
+                                                <p>1 x £60.00</p>
+                                            </div>
+                                        </div>
+                                        <div class="single-cart">
+                                            <div class="cart-img">
+                                                <a href="#"><img src="<?= base_url()?>frontend_assets/img/product/3.jpg" alt="book" /></a>
+                                            </div>
+                                            <div class="cart-info">
+                                                <h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
+                                                <p>1 x £52.00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart-totals">
+                                        <h5>Total <span>£12.00</span></h5>
+                                    </div>
+                                    <div class="cart-bottom">
+                                        <a href="checkout.html">Check out</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="show-cart"><a href="#"><i class="icon ion-drag"></i></a>
+                                <div class="shapping-area" id="hide-cart">
+                                    <div class="single-shapping mb-20">
+                                        <span>Currency</span>
+                                        <ul>
+                                            <li><a href="#">€ Euro</a></li>
+                                            <li><a href="#">£ Pound Sterling</a></li>
+                                            <li><a href="#">$ US Dollar</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-shapping mb-20">
+                                        <span>Language</span>
+                                        <ul>
+                                            <li><a href="#"><img src="<?= base_url()?>frontend_assets/img/flag/1.jpg" alt="flag" />   English</a></li>
+                                            <li><a href="#"><img src="<?= base_url()?>frontend_assets/img/flag/2.jpg" alt="flag" />   French</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-shapping">
+                                        <span>My Account</span>
+                                        <ul>
+                                            <li><a href="register.html">Register</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
-                        <!-- /.dropdown-menu-->
                     </div>
-                    <!-- /.dropdown-cart -->
-
-                    <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
-                <!-- /.top-cart-row -->
+                    <!-- header-right-area-end -->
+                </div>
             </div>
-            <!-- /.row -->
-
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- ============================================== NAVBAR ============================================== -->
-    <div class="header-nav animate-dropdown">
+    <!-- header-top-area-end -->
+    <!-- mobile-menu-area-start -->
+    <div class="mobile-menu-area hidden-md hidden-lg">
         <div class="container">
-            <div class="yamm navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                </div>
-                <div class="nav-bg-class">
-                    <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
-                        <div class="nav-outer">
-                            <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="<?= base_url() ?>" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
-                                <li class="dropdown"> <a href="<?= base_url() ?>">All Categories</a> </li>
-                                <li class="dropdown"> <a href="<?= base_url().'Home/About_us'?>">About Us</a> </li>
-                                <li class="dropdown"> <a href="<?= base_url().'Home/Contact_us'?>">Contact Us</a> </li>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul id="nav">
+                                <li><a href="index.html">Home</a>
+                                    <ul>
+                                        <li><a href="index-2.html">Home-2</a></li>
+                                        <li><a href="index-3.html">Home-3</a></li>
+                                        <li><a href="index-4.html">Home-4</a></li>
+                                        <li><a href="index-5.html">Home-5</a></li>
+                                        <li><a href="index-6.html">Home-6</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="shop.html">Men</a>
+                                    <ul>
+                                        <li><a href="shop.html">finibus iaculis</a></li>
+                                        <li><a href="shop.html">Integer rhoncus</a></li>
+                                        <li><a href="shop.html">purus elittincidu</a></li>
+                                        <li><a href="shop.html">tincidunt est</a></li>
+                                        <li><a href="shop.html">Fusce eurhon</a></li>
+                                        <li><a href="shop.html">iaculis ipsum</a></li>
+                                        <li><a href="shop.html">ligula consectet</a></li>
+                                        <li><a href="shop.html">vestibulum egest</a></li>
+                                        <li><a href="shop.html">Integer rhoncus</a></li>
+                                        <li><a href="shop.html">ipsum ametus</a></li>
+                                        <li><a href="shop.html">Morbi vitae</a></li>
+                                        <li><a href="shop.html">semper vulputate</a></li>
+                                        <li><a href="shop.html">Aliquam acsus</a></li>
+                                        <li><a href="shop.html">Morbi amimi</a></li>
+                                        <li><a href="shop.html">pretium metus</a></li>
+                                        <li><a href="shop.html">suscipit felis</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="shop.html">Accessories</a>
+                                    <ul>
+                                        <li><a href="shop.html">Integer rhoncus</a></li>
+                                        <li><a href="shop.html">ipsum ametus</a></li>
+                                        <li><a href="shop.html">Morbi vitae</a></li>
+                                        <li><a href="shop.html">semper vulputate</a></li>
+                                        <li><a href="shop.html">Aliquam acsus</a></li>
+                                        <li><a href="shop.html">Morbi amimi</a></li>
+                                        <li><a href="shop.html">pretium metus</a></li>
+                                        <li><a href="shop.html">suscipit felis</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="shop.html">Women</a>
+                                    <ul>
+                                        <li><a href="shop.html">arcu dignissim</a></li>
+                                        <li><a href="shop.html">congue quamm</a></li>
+                                        <li><a href="shop.html">necfer mentuma</a></li>
+                                        <li><a href="shop.html">ultricies volutpat</a></li>
+                                        <li><a href="shop.html">acaliquet orci</a></li>
+                                        <li><a href="shop.html">dignissim placera</a></li>
+                                        <li><a href="shop.html">risussed trist</a></li>
+                                        <li><a href="shop.html">Utsuscipit urna</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog.html">blog</a>
+                                    <ul>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="blog-details.html">blog details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="shop.html">Pages</a>
+                                    <ul>
+                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a href="product-details.html">product details</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="blog-details.html">blog details</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="404.html">404 Page</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <div class="clearfix"></div>
-                        </div>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ============================================== NAVBAR : END ============================================== -->
+    <!-- mobile-menu-area-end -->
 </header>

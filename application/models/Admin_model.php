@@ -243,7 +243,14 @@ class Admin_model extends CI_Model
     public function getById($table, $id)
     {
         $st = $this->db->select('*')->from($table)->WHERE('id', $id)->get()->result_array();
+        //echo $this->db->last_query();
         return $st[0];
+    }
+
+    public function getByIdSub($table, $id)
+    {
+        $st = $this->db->select('*')->from($table)->WHERE($id)->get()->result();
+        return $st;
     }
 
     ///////////////////////////////////////
@@ -452,4 +459,291 @@ class Admin_model extends CI_Model
         );
         $this->db->WHERE('id',$id)->update('users',$item);
     }
+
+
+    // FILE_VIEW
+    function file_view($type, $id, $width = '100', $height = '100', $thumb = 'no', $src = 'no', $multi = '', $multi_num = '', $ext = '.jpg')
+    {
+        if ($multi == '') {
+            if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . $ext)) {
+                if ($thumb == 'no') {
+                    $srcl = base_url() . 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext;
+                } elseif ($thumb == 'thumb') {
+                    $srcl = base_url() . 'uploads/' . $type . '_image/' . $type . '_' . $id . '_thumb' . $ext;
+                }
+
+                if ($src == 'no') {
+                    return '<img src="' . $srcl . '" height="' . $height . '" width="' . $width . '" />';
+                } elseif ($src == 'src') {
+                    return $srcl;
+                }
+            } else {
+                return base_url() . 'uploads/' . $type . '_image/default.jpg';
+            }
+
+        } else if ($multi == 'multi') {
+            $num = $this->Admin_model->get_type_name_by_id($type, $id, 'num_of_imgs');
+            //$num = 2;
+            $i = 0;
+            $p = 0;
+            $q = 0;
+            $return = array();
+            while ($p < $num) {
+                $i++;
+                if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $i . $ext)) {
+                    if ($thumb == 'no') {
+                        $srcl = base_url() . 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $i . $ext;
+                    } elseif ($thumb == 'thumb') {
+                        $srcl = base_url() . 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $i . '_thumb' . $ext;
+                    }
+
+                    if ($src == 'no') {
+                        $return[] = '<img src="' . $srcl . '" height="' . $height . '" width="' . $width . '" />';
+                    } elseif ($src == 'src') {
+                        $return[] = $srcl;
+                    }
+                    $p++;
+                } else {
+                    $q++;
+                    if ($q == 10) {
+                        break;
+                    }
+                }
+
+            }
+            if (!empty($return)) {
+                if ($multi_num == 'one') {
+                    return $return[0];
+                } else if ($multi_num == 'all') {
+                    return $return;
+                } else {
+                    $n = $multi_num - 1;
+                    unset($return[$n]);
+                    return $return;
+                }
+            } else {
+                if ($multi_num == 'one') {
+                    return base_url() . 'uploads/' . $type . '_image/default.jpg';
+                } else if ($multi_num == 'all') {
+                    return array(base_url() . 'uploads/' . $type . '_image/default.jpg');
+                } else {
+                    return array(base_url() . 'uploads/' . $type . '_image/default.jpg');
+                }
+            }
+        }
+    }
+
+    /////////GET NAME BY TABLE NAME AND ID/////////////
+    function get_type_name_by_id($type, $type_id = '', $field = 'name')
+    {
+        if ($type_id != '') {
+            $l = $this->db->get_where($type, array(
+                $type_id => $type_id
+            ));
+            $n = $l->num_rows();
+            if ($n > 0) {
+                //echo $this->db->last_query();
+                return $l->row()->$field;
+            }
+        }
+    }
+
+    function select_html($from, $name, $field, $type, $class, $e_match = '', $condition = '', $c_match = '', $onchange = '', $condition_type = 'single')
+    {
+        $return = '';
+        $other = '';
+        $multi = 'no';
+        $phrase = 'Choose a ' . $name;
+        if ($class == 'demo-cs-multiselect') {
+            $other = 'multiple';
+            $name = $name . '[]';
+            if ($type == 'edit') {
+                $e_match = json_decode($e_match);
+                if ($e_match == NULL) {
+                    $e_match = array();
+                }
+                $multi = 'yes';
+            }
+        }
+        $return = '<select name="' . $name . '" onChange="' . $onchange . '(this.value,this)" class="' . $class . '" ' . $other . '  data-placeholder="' . $phrase . '" tabindex="2" data-hide-disabled="true" >';
+        if (!is_array($from)) {
+            if ($condition == '') {
+                $all = $this->db->get($from)->result_array();
+            } else if ($condition !== '') {
+                if ($condition_type == 'single') {
+                    $all = $this->db->get_where($from, array(
+                        $condition => $c_match
+                    ))->result_array();
+                } else if ($condition_type == 'multi') {
+                    $this->db->where_in($condition, $c_match);
+                    $all = $this->db->get($from)->result_array();
+                }
+            }
+
+            $return .= '<option value="">Choose one</option>';
+
+            foreach ($all as $row):
+                if ($type == 'add') {
+                    $return .= '<option value="' . $row['id'] . '">' . $row[$field] . '</option>';
+                } else if ($type == 'edit') {
+                    $return .= '<option value="' . $row['id'] . '" ';
+                    if ($multi == 'no') {
+                        if ($row['id'] == $e_match) {
+                            $return .= 'selected=."selected"';
+                        }
+                    } else if ($multi == 'yes') {
+                        if (in_array($row[$from . '_id'], $e_match)) {
+                            $return .= 'selected=."selected"';
+                        }
+                    }
+                    $return .= '>' . $row[$field] . '</option>';
+                }
+            endforeach;
+        } else {
+            $all = $from;
+            $return .= '<option value="">Choose one</option>';
+            foreach ($all as $row):
+                if ($type == 'add') {
+                    $return .= '<option value="' . $row . '">';
+                    if ($condition == '') {
+                        $return .= ucfirst(str_replace('_', ' ', $row));
+                    } else {
+                        $return .= $this->crud_model->get_type_name_by_id($condition, $row, $c_match);
+                    }
+                    $return .= '</option>';
+                } else if ($type == 'edit') {
+                    $return .= '<option value="' . $row . '" ';
+                    if ($row == $e_match) {
+                        $return .= 'selected=."selected"';
+                    }
+                    $return .= '>';
+
+                    if ($condition == '') {
+                        $return .= ucfirst(str_replace('_', ' ', $row));
+                    } else {
+                        $return .= $this->crud_model->get_type_name_by_id($condition, $row, $c_match);
+                    }
+
+                    $return .= '</option>';
+                }
+            endforeach;
+        }
+        $return .= '</select>';
+        return $return;
+    }
+
+
+    // FILE_UPLOAD
+    function img_thumb($type, $id, $ext = '.jpg', $width = '700', $height = '700')
+    {
+        $this->load->library('image_lib');
+        ini_set("memory_limit", "-1");
+
+        $config1['image_library'] = 'gd2';
+        $config1['create_thumb'] = TRUE;
+        $config1['maintain_ratio'] = TRUE;
+        $config1['width'] = $width;
+        $config1['height'] = $height;
+        $config1['source_image'] = 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext;
+
+        $this->image_lib->initialize($config1);
+        $this->image_lib->resize();
+        $this->image_lib->clear();
+    }
+
+    // FILE_UPLOAD
+    function img_thumb_slides($type, $id, $ext = '.jpg', $width = '700', $height = '700')
+    {
+        $this->load->library('image_lib');
+        ini_set("memory_limit", "-1");
+
+        $config1['image_library'] = 'gd2';
+        $config1['create_thumb'] = TRUE;
+        $config1['maintain_ratio'] = TRUE;
+        //$config1['width'] = $width;
+        //$config1['height'] = $height;
+        $config1['source_image'] = 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext;
+
+        $this->image_lib->initialize($config1);
+        $this->image_lib->resize();
+        $this->image_lib->clear();
+    }
+
+    // FILE_UPLOAD
+    function file_up($name, $type, $id, $multi = '', $no_thumb = '', $ext = '.jpg')
+    {
+        if ($multi == '') {
+            move_uploaded_file($_FILES[$name]['tmp_name'], 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext);
+            if ($no_thumb == '') {
+                $this->Admin_model->img_thumb($type, $id, $ext);
+            }
+        } elseif ($multi == 'multi') {
+            $ib = 1;
+            foreach ($_FILES[$name]['name'] as $i => $row) {
+                $ib = $this->file_exist_ret($type, $id, $ib);
+                move_uploaded_file($_FILES[$name]['tmp_name'][$i], 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext);
+                $image = 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext;
+                //$image = $_FILES[$name]['tmp_name'][$i], 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext;
+                $images_data = array(
+                    'image_name'=>$image,
+                    'product_id'=>$id
+                );
+                $this->db->insert('product_image',$images_data);
+                if ($no_thumb == '') {
+                    $this->Admin_model->img_thumb($type, $id . '_' . $ib, $ext);
+                }
+            }
+        }
+    }
+
+    function file_up_slides($name, $type, $id, $multi = '', $no_thumb = '', $ext = '.jpg')
+    {
+        if ($multi == '') {
+            move_uploaded_file($_FILES[$name]['tmp_name'], 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext);
+            if ($no_thumb == '') {
+                $this->Admin_model->img_thumb($type, $id, $ext);
+            }
+        } elseif ($multi == 'multi') {
+            $ib = 1;
+            foreach ($_FILES[$name]['name'] as $i => $row) {
+                $ib = $this->file_exist_ret($type, $id, $ib);
+                move_uploaded_file($_FILES[$name]['tmp_name'][$i], 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext);
+                if ($no_thumb == '') {
+                    $this->admin_model->img_thumb($type, $id . '_' . $ib, $ext);
+                }
+            }
+        }
+    }
+
+    // FILE_UPLOAD : EXT :: FILE EXISTS
+    function file_exist_ret($type, $id, $ib, $ext = '.jpg')
+    {
+        if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext)) {
+            $ib = $ib + 1;
+            $ib = $this->file_exist_ret($type, $id, $ib);
+            return $ib;
+        } else {
+            return $ib;
+        }
+    }
+
+    //GETTING ADDITIONAL FIELDS FOR PRODUCT ADD
+    function get_additional_fields($product_id)
+    {
+        $additional_fields = $this->Admin_model->get_type_name_by_id('product', $product_id, 'additional_fields');
+        $ab = json_decode($additional_fields, true);
+        $name = json_decode($ab['name']);
+        $value = json_decode($ab['value']);
+        $final = array();
+        if (!empty($name)) {
+            foreach ($name as $n => $row) {
+                $final[] = array(
+                    'name' => $row,
+                    'value' => $value[$n]
+                );
+            }
+        }
+        return $final;
+    }
+    
 }

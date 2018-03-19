@@ -13,6 +13,14 @@ class Home_model extends CI_Model
         return $this->db->select('*')->from($table)->get()->result_array();
     }
 
+    public function getAllImran($table,$limit = '')
+    {
+        $this->db->select('*')->from($table);
+        if($limit)
+            $this->db->limit($limit);
+        return $this->db->get()->result_array();
+    }
+
     /*===== GET SOCIAL LINKS ====*/
     public function get_social_links()
     {
@@ -141,7 +149,18 @@ class Home_model extends CI_Model
     public function getById($table, $id)
     {
         $st = $this->db->select('*')->from($table)->WHERE('id', $id)->get()->result_array();
+        //echo $this->db->last_query();
         return $st[0];
+    }
+
+    public function getByIdImran($table, $id, $limit = '')
+    {
+        $this->db->select('*')->from($table)->WHERE($id);
+        if($limit)
+            $this->db->limit($limit);
+        $st = $this->db->get()->result_array();
+        //echo $this->db->last_query();
+        return $st;
     }
 
     /*===== ACTIVATE USER ======*/

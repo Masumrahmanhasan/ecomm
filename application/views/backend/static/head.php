@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="<?= base_url() ?>backend_assets/<?php echo $theme?>/css/demo.min.css">
     <link rel="stylesheet" href="<?= base_url()?>backend_assets/<?php echo $theme?>/css/login-2.min.css">
     <link rel="stylesheet" href="<?= base_url()?>backend_assets/my_style.css">
+    <link href="<?= base_url()?>backend_assets/switchery/switchery.min.css" rel="stylesheet">
+
+
     <script type="text/javascript" src="<?= base_url()?>backend_assets/<?php echo $theme ?>/js/jquery-2.1.1.min.js"></script>
     <!-- Sweet alert css -->
     <link rel="stylesheet" href="<?= base_url()?>backend_assets/<?php echo $theme?>/sweetalert/sweetalert2.min.css">

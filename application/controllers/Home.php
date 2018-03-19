@@ -5,6 +5,10 @@
  * Date: 2/23/2018
  * Time: 12:11 AM
  */
+
+/**
+ * @property Home_model Home_model
+ * */
 class Home extends CI_Controller
 {
     public function __construct()
@@ -19,23 +23,55 @@ class Home extends CI_Controller
     public function index()
     {
         //$data['get_fet'] = $this->Home_model->get_featured_products();
-        $data['cats'] = $this->Home_model->get_all_categories();
+        /*$data['cats'] = $this->Home_model->get_all_categories();
         $data['category'] = $this->Home_model->getAll('category');
         $data['brands'] = $this->Home_model->getAll('brands');
         $data['social_links'] = $this->Home_model->get_social_links();
         $data['company_info'] = $this->Admin_model->get_company_info();
         $data['title'] = $data['company_info']['name']." | Home";
-        $data['slides'] = $this->Home_model->getAll('slider');
+        $data['slides'] = $this->Home_model->getAll('slider');*/
+        $data['category'] = $this->Admin_model->getAll('category');
+      /*  foreach ($data['category'] as $item) {
+                                 echo $item['name']."<br>";
+            $data['sub'] = $this->Home_model->getByIdImran('sub_category',array('cat_id',$item['id']));
+            foreach ($data['sub'] as $subs) {
+
+                echo $subs['name']."<br>";
+
+                $data['brands'] = $this->Home_model->getByIdImran('brands',array('sub_cat_id',$subs['id']));
+                foreach ($data['brands'] as $brand) {
+
+                    echo $brand['name']."<br>";
+                }
+
+            }
+
+        }
+        exit;*/
+        //$data['sub_category'] = $this->Home_model->get('sub_category');
+        $data['title'] = 'Home';
         $this->load->view('frontend/static/head',$data);
         $this->load->view('frontend/static/header');
         $this->load->view('frontend/home');
         $this->load->view('frontend/static/footer');
     }
 
+    public function all_categories()
+    {
+        $data['products'] = $this->Admin_model->getAll('product');
+        $data['categories'] = $this->Admin_model->getAll('category');
+        $data['title'] = 'Home';
+        $this->load->view('frontend/static/head',$data);
+        $this->load->view('frontend/static/header');
+        $this->load->view('frontend/all_categories');
+        $this->load->view('frontend/static/footer');
+
+    }
+
     /*===== ABOUT US =====*/
     public function About_us()
     {
-        $data['category'] = $this->Home_model->getAll('category');
+        /*$data['category'] = $this->Home_model->getAll('category');
         $data['brands'] = $this->Home_model->getAll('brands');
         $data['social_links'] = $this->Home_model->get_social_links();
         $data['company_info'] = $this->Admin_model->get_company_info();
@@ -43,13 +79,13 @@ class Home extends CI_Controller
         $this->load->view('frontend/static/head',$data);
         $this->load->view('frontend/static/header');
         $this->load->view('frontend/about_us');
-        $this->load->view('frontend/static/footer');
+        $this->load->view('frontend/static/footer');*/
     }
 
     /*===== Contact Us =====*/
     public function Contact_us()
     {
-        $data['category'] = $this->Home_model->getAll('category');
+        /*$data['category'] = $this->Home_model->getAll('category');
         $data['brands'] = $this->Home_model->getAll('brands');
         $data['social_links'] = $this->Home_model->get_social_links();
         $data['company_info'] = $this->Admin_model->get_company_info();
@@ -57,7 +93,7 @@ class Home extends CI_Controller
         $this->load->view('frontend/static/head',$data);
         $this->load->view('frontend/static/header');
         $this->load->view('frontend/contact_us');
-        $this->load->view('frontend/static/footer');
+        $this->load->view('frontend/static/footer');*/
     }
 
     /*====== GET SINGLE PRODUCT DETAIL PAGE ======*/
@@ -75,7 +111,7 @@ class Home extends CI_Controller
     /*===== SIGN_IN / REGISTER =====*/
     public function Sign_up()
     {
-        $data['category'] = $this->Home_model->getAll('category');
+        /*$data['category'] = $this->Home_model->getAll('category');
         $data['brands'] = $this->Home_model->getAll('brands');
         $data['social_links'] = $this->Home_model->get_social_links();
         $data['company_info'] = $this->Admin_model->get_company_info();
@@ -83,11 +119,11 @@ class Home extends CI_Controller
         $this->load->view('frontend/static/head',$data);
         $this->load->view('frontend/static/header');
         $this->load->view('frontend/Sign_up');
-        $this->load->view('frontend/static/footer');
+        $this->load->view('frontend/static/footer');*/
     }
 
     /*===== REGISTER USER AJAX CALL ======*/
-    public function register_user()
+    /*public function register_user()
     {
         if($_POST)
         {
@@ -163,7 +199,7 @@ class Home extends CI_Controller
                 echo json_encode((["msg_type" => "success" , "message" => "Register successfully Kindly check your Email"]));
             }
         }
-    }
+    }*/
 
     public function test_email($id)
     {
@@ -287,5 +323,15 @@ class Home extends CI_Controller
         } else {
             return false;
         }
+    }
+    
+    function getProducts(){
+        
+        $id = $this->input->post('id');
+
+        $data =  $this->Home_model->getByIdImran('product',array("cat_id"=>$id));
+
+        echo json_encode((["result"=>$data]));
+
     }
 }

@@ -1,34 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
-    <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Mimosa-Responsive eCommerce Template</title>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="MediaCenter, Template, eCommerce">
-    <meta name="robots" content="all">
-    <title><?= $title; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Core CSS -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url()?>frontend_assets/img/favicon.png">
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
     <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/bootstrap.min.css">
-
-    <!-- Customizable CSS -->
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/main.css">
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/blue.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/animate.css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/jquery-ui.min.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/meanmenu.min.css">
+    <!-- owl.carousel css -->
     <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/owl.transitions.css">
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/animate.min.css">
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/rateit.css">
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="<?= base_url()?>backend_assets/my_style.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/font-awesome.min.css">
+    <!-- ionicons.min css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/ionicons.min.css">
+    <!-- nivo-slider.css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/nivo-slider.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/responsive.css">
 
-    <!-- Icons/Glyphs -->
-    <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/font-awesome.css">
-
+    <!-- Jquery -->
     <script src="<?= base_url()?>frontend_assets/js/jquery-3.2.1.min.js"></script>
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- modernizr css -->
+    <script src="<?= base_url()?>frontend_assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>

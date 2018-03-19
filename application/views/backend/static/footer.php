@@ -63,6 +63,9 @@
     <script src="<?= base_url() ?>backend_assets/<?php echo $theme?>/js/application.min.js"></script>
     <script src="<?= base_url()?>backend_assets/<?php echo $theme?>/js/demo.min.js"></script>
     <script src="<?= base_url() ?>backend_assets/bootstrap-select.min.js"></script>
+<script src="<?= base_url() ?>backend_assets/switchery/switchery.js"></script>
+<script src="<?= base_url() ?>backend_assets/bootbox/bootbox.js"></script>
+
 
     <script>
             window.setTimeout(function() {
