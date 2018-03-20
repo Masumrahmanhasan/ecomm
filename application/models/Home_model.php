@@ -172,4 +172,28 @@ class Home_model extends CI_Model
             $this->db->query("UPDATE customer set status='Approved' WHERE id=$id");
         }
     }
+
+    public function getAllProducts()
+    {
+        return $this->db->query("SELECT * FROM 
+product AS p, brands AS b,product_image AS PI
+WHERE p.`brand_id` = b.`id`
+AND p.`product_id` = pi.`product_id`
+AND pi.`class`='primary'")->result_array();
+    }
+    public function getByIdAjax($id)
+    {
+        if($id !=''){
+            $i = " AND p.cat_id = $id";
+        }
+        return $this->db->query("SELECT * FROM 
+product AS p, brands AS b,product_image AS PI
+WHERE p.`brand_id` = b.`id`
+AND p.`product_id` = pi.`product_id`
+$i AND pi.`class`='primary'")->result_array();
+    }
+
+
 }
+
+

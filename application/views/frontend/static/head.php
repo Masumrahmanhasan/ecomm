@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/style.css">
     <!-- responsive css -->
     <link rel="stylesheet" href="<?= base_url()?>frontend_assets/css/responsive.css">
+    <link rel="stylesheet" href="<?= base_url()?>backend_assets/my_style.css">
+    <link rel="stylesheet" href="<?= base_url()?>backend_assets/theme1/css/toastr.css">
 
     <!-- Jquery -->
     <script src="<?= base_url()?>frontend_assets/js/jquery-3.2.1.min.js"></script>

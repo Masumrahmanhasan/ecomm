@@ -67,27 +67,10 @@
                                 </div>
                             </li>
                             <li><a href="cart.html"><i class="icon ion-bag"></i></a>
-                                <span>2</span>
+                                <span></span>
                                 <div class="mini-cart-sub">
-                                    <div class="cart-product">
-                                        <div class="single-cart">
-                                            <div class="cart-img">
-                                                <a href="#"><img src="<?= base_url()?>frontend_assets/img/product/1.jpg" alt="book" /></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h5><a href="#">Joust Duffle Bag</a></h5>
-                                                <p>1 x £60.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="single-cart">
-                                            <div class="cart-img">
-                                                <a href="#"><img src="<?= base_url()?>frontend_assets/img/product/3.jpg" alt="book" /></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
-                                                <p>1 x £52.00</p>
-                                            </div>
-                                        </div>
+                                    <div class="cart-product" id="cart_details">
+                                        
                                     </div>
                                     <div class="cart-totals">
                                         <h5>Total <span>£12.00</span></h5>

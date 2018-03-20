@@ -63,24 +63,23 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="list">
                             <div class="row">
-                                <?php for ($i = 0; $i < count($products); $i++) { $p_id = $products[$i]['product_id']; ?>
+                                <?php for ($i = 0; $i < count($products); $i++) { ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                         <!-- product-wrapper-start -->
                                         <div class="product-wrapper mb-40">
                                             <div class="product-img">
                                                 <a href="#">
-                                                    <?php $images = $this->db->query("select * from product_image where product_id = $p_id and class = 'primary'")->row();?>
-                                                    <img src="<?= base_url() ?><?=$images->image_name;?>"
+                                                    <img src="<?= base_url() ?>frontend_assets/img/product/1.jpg"
                                                          alt="product" class="primary"/>
-
+                                                    <img src="<?= base_url() ?>frontend_assets/img/product/2.jpg"
+                                                         alt="product" class="secondary"/>
                                                 </a>
                                                 <span class="sale">sale</span>
                                                 <div class="product-icon">
-                                                    <button type="button" name="add_cart"
-                                                            class="btn btn-success add_cart" data-productname="<?=$products[$i]['product_name']?>"
-                                                            data-price="<?=$products[$i]['sale_price'];?>"
-                                                            data-productid="<?=$products[$i]['product_id'];?>"
-                                                            title="Add to Cart"><i class="icon ion-bag"></i> </button>
+                                                    <a href="#" data-toggle="tooltip" title="Add to Cart"><i
+                                                            class="icon ion-bag"></i></a>
+                                                    <a href="#" data-toggle="tooltip" title="Compare this Product"><i
+                                                            class="icon ion-android-options"></i></a>
                                                     <a href="#" data-toggle="modal" data-target="#mymodal"
                                                        title="Quick View"><i class="icon ion-android-open"></i></a>
                                                 </div>
@@ -104,7 +103,7 @@
                                                 </h2>
                                                 <div class="price">
                                                     <ul>
-                                                        <li class="new-price">Rs. <?= $products[$i]['purchase_price']; ?></li>
+                                                        <li class="new-price">$122.00</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -265,5 +264,4 @@
             }
         });
     }
-
 </script>
