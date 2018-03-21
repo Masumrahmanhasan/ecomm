@@ -4,7 +4,7 @@
     <list default="true" id="4abb66e7-5907-45d8-89ef-6325a6b42c00" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/frontend/home.php" afterPath="$PROJECT_DIR$/application/views/frontend/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/frontend/product_detail.php" afterPath="$PROJECT_DIR$/application/views/frontend/product_detail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/frontend/static/header.php" afterPath="$PROJECT_DIR$/application/views/frontend/static/header.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +23,95 @@
     <favorites_list name="new_ecommerce" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/frontend/home.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="185" column="111" selection-start-line="185" selection-start-column="111" selection-end-line="185" selection-end-column="111" />
+              <folding>
+                <marker date="1521642689195" expanded="true" signature="6576:6613" placeholder="select * fro... product" />
+                <marker date="1521642689195" expanded="true" signature="7370:7417" placeholder="select * fro... product_image" />
+                <marker date="1521642689195" expanded="true" signature="9034:9232" placeholder="SELECT (b.`n... brands" />
+                <marker date="1521642689195" expanded="true" signature="13876:14048" placeholder="SELECT * FRO... product" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../webslesson/php_filesystem-ajax/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insert.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/insert.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="62" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="62" />
+              <folding>
+                <marker date="1521650780790" expanded="true" signature="293:368" placeholder="INSERT INTO user... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/update.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+              <folding>
+                <marker date="1521650780663" expanded="true" signature="179:263" placeholder="UPDATE user " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="delete.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/delete.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+              <folding>
+                <marker date="1521650780853" expanded="true" signature="112:158" placeholder="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fetch.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/fetch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+              <folding>
+                <marker date="1521650780714" expanded="true" signature="140:158" placeholder="SELECT * FRO... user" />
+                <marker date="1521650780714" expanded="true" signature="1334:1352" placeholder="SELECT * FRO... user" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="all_categories.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/frontend/all_categories.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="82" column="118" selection-start-line="78" selection-start-column="52" selection-end-line="82" selection-end-column="118" />
+              <folding>
+                <marker date="1521554802594" expanded="true" signature="3458:3532" placeholder="select * fro... product_image" />
+                <marker date="1521554802594" expanded="true" signature="8736:8789" placeholder="select count... product" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -72,14 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../imi/application/config/database.php" />
-        <option value="$USER_HOME$/Desktop/edit_institute.php" />
-        <option value="$USER_HOME$/Desktop/institutes.php" />
-        <option value="$USER_HOME$/Desktop/institute.php" />
-        <option value="$PROJECT_DIR$/application/views/backend/modal_take_payment.php" />
-        <option value="$PROJECT_DIR$/application/views/backend/product_view.php" />
-        <option value="$PROJECT_DIR$/application/views/backend/product_add_discount.php" />
-        <option value="$PROJECT_DIR$/application/views/backend/all_products.php" />
         <option value="$USER_HOME$/Desktop/single_detail_16_2016.php" />
         <option value="$PROJECT_DIR$/../smis/application/config/database.php" />
         <option value="$PROJECT_DIR$/application/views/backend/product_edit.php" />
@@ -100,7 +180,6 @@
         <option value="$PROJECT_DIR$/application/views/backend/static/footer.php" />
         <option value="$PROJECT_DIR$/application/views/frontend/static/head.php" />
         <option value="$PROJECT_DIR$/application/views/frontend/all_categories.php" />
-        <option value="$PROJECT_DIR$/application/views/frontend/static/header.php" />
         <option value="$PROJECT_DIR$/application/views/frontend/static/footer.php" />
         <option value="$PROJECT_DIR$/application/models/Home_model.php" />
         <option value="$PROJECT_DIR$/application/views/frontend/ajax_products.php" />
@@ -109,7 +188,6 @@
         <option value="$PROJECT_DIR$/../spare_parts_new/application/config/database.php" />
         <option value="$PROJECT_DIR$/../spare_parts_new/application/views/reports/purchaseReportDetails.php" />
         <option value="$PROJECT_DIR$/../spare_parts_new/application/views/kifayat.php" />
-        <option value="$PROJECT_DIR$/application/views/frontend/home.php" />
         <option value="$PROJECT_DIR$/../hhris/application/views/report/sanction.php" />
         <option value="$PROJECT_DIR$/../spare_parts_new/application/views/_template/foot.php" />
         <option value="$PROJECT_DIR$/../spare_parts_new/application/controllers/dashboard.php" />
@@ -123,6 +201,16 @@
         <option value="$PROJECT_DIR$/../webslesson/live-data-search-in-codeigniter-using-ajax-jquery/application/config/database.php" />
         <option value="$PROJECT_DIR$/../webslesson/live-data-search-in-codeigniter-using-ajax-jquery/application/config/config.php" />
         <option value="$PROJECT_DIR$/../webslesson/live-data-search-in-codeigniter-using-ajax-jquery/application/models/Ajaxsearch_model.php" />
+        <option value="$PROJECT_DIR$/application/views/frontend/static/header.php" />
+        <option value="$PROJECT_DIR$/application/views/frontend/home.php" />
+        <option value="$PROJECT_DIR$/../webslesson/php_filesystem-ajax/index.php" />
+        <option value="$PROJECT_DIR$/../webslesson/php_filesystem-ajax/action.php" />
+        <option value="$PROJECT_DIR$/../webslesson/php_filesystem-ajax/upload.php" />
+        <option value="$PROJECT_DIR$/../webslesson/live_add_edit_delete/index.php" />
+        <option value="$PROJECT_DIR$/../webslesson/live_add_edit_delete/insert.php" />
+        <option value="$PROJECT_DIR$/../webslesson/live_add_edit_delete/update.php" />
+        <option value="$PROJECT_DIR$/../webslesson/live_add_edit_delete/delete.php" />
+        <option value="$PROJECT_DIR$/../webslesson/live_add_edit_delete/fetch.php" />
       </list>
     </option>
   </component>
@@ -168,14 +256,7 @@
     <panes>
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new_ecommerce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
     </panes>
@@ -292,18 +373,18 @@
       <workItem from="1521480003707" duration="3016000" />
       <workItem from="1521526272675" duration="18305000" />
       <workItem from="1521613309092" duration="88000" />
-      <workItem from="1521628034053" duration="8604000" />
+      <workItem from="1521628034053" duration="11556000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225396000" />
+    <option name="totallyTimeSpent" value="228348000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24791667" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24791667" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -359,103 +440,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Desktop/Templates/Online Courses/index.html" />
-    <entry file="file://$PROJECT_DIR$/application/views/backend/product_add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6160">
-          <caret line="280" column="15" selection-start-line="251" selection-start-column="12" selection-end-line="280" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="1341" column="29" selection-start-line="1341" selection-start-column="23" selection-end-line="1341" selection-end-column="29" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="false" />
-            <element signature="n#add_category#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#save_category#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#save_update_category#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="e#12710#13529#0#PHP" expanded="false" />
-            <element signature="e#13576#14651#0#PHP" expanded="false" />
-            <element signature="e#14690#15556#0#PHP" expanded="false" />
-            <element signature="e#15603#16359#0#PHP" expanded="false" />
-            <element signature="e#16398#16639#0#PHP" expanded="false" />
-            <element signature="e#16680#17499#0#PHP" expanded="false" />
-            <element signature="n#add_sub_category#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#add_brand_sub_cat#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#manage_sub_categories#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#edit_sub_category#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#save_edit_info#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#change_logo#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#update_logo#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#add_slide#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="e#41303#41323#0#PHP" expanded="false" />
-            <element signature="n#all_products#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#get_stock#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#statuses#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#edit_products#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#brand_by_sub#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="e#47085#47292#0#PHP" expanded="false" />
-            <element signature="n#take_payments#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="e#52300#60787#0#PHP" expanded="false" />
-            <element signature="e#53438#60787#0#PHP" expanded="false" />
-            <element signature="e#54248#54402#0#PHP" expanded="false" />
-            <element signature="e#54411#55021#0#PHP" expanded="false" />
-            <element signature="e#55035#60787#0#PHP" expanded="false" />
-            <element signature="e#55849#60787#0#PHP" expanded="false" />
-            <element signature="e#56847#57511#0#PHP" expanded="false" />
-            <element signature="e#57520#57757#0#PHP" expanded="false" />
-            <element signature="e#57766#57857#0#PHP" expanded="false" />
-            <element signature="e#57866#57965#0#PHP" expanded="false" />
-            <element signature="e#57974#58196#0#PHP" expanded="false" />
-            <element signature="e#58205#58410#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../snapkart/application/views/front/product_list/other/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="84" column="35" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../online_course_website/smartedu/single_course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9658">
-          <caret line="572" column="84" selection-start-line="417" selection-start-column="22" selection-end-line="552" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Templates/OnlineCourses/single-course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3366">
-          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../snapkart/application/controllers/Home - Copy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend_assets/my_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="77" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../snapkart/application/views/front/product_view/other/page_view/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../snapkart/application/controllers/Home.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -495,13 +479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="34" column="75" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/frontend/static/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="207" column="38" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -555,13 +532,6 @@
           <folding>
             <element signature="e#2684#4534#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/frontend/all_categories.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="268" column="119" selection-start-line="268" selection-start-column="9" selection-end-line="268" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -637,20 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/frontend/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="303" column="65" selection-start-line="303" selection-start-column="45" selection-end-line="303" selection-end-column="65" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#3;n#!!top" expanded="false" />
-            <marker date="1521628502008" expanded="true" signature="6576:6613" placeholder="select * fro... product" />
-            <marker date="1521628502008" expanded="true" signature="7370:7417" placeholder="select * fro... product_image" />
-            <marker date="1521628502008" expanded="true" signature="8906:9104" placeholder="SELECT (b.`n... brands" />
-            <marker date="1521628502008" expanded="true" signature="13681:13853" placeholder="SELECT * FRO... product" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../hhris/js/code.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -674,7 +630,7 @@
         <state relative-caret-position="270">
           <caret line="209" column="32" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -774,7 +730,7 @@
         <state relative-caret-position="665">
           <caret line="437" column="12" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -821,7 +777,7 @@
         <state relative-caret-position="22">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -869,6 +825,131 @@
         <state relative-caret-position="132">
           <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/frontend/static/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/frontend/views/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1521374985998" expanded="true" signature="6576:6613" placeholder="select * fro... product" />
+            <marker date="1521374985998" expanded="true" signature="7370:7417" placeholder="select * fro... product_image" />
+            <marker date="1521374985998" expanded="true" signature="8906:9104" placeholder="SELECT (b.`n... brands" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/frontend/all_categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="82" column="118" selection-start-line="78" selection-start-column="52" selection-end-line="82" selection-end-column="118" />
+          <folding>
+            <marker date="1521554802594" expanded="true" signature="3458:3532" placeholder="select * fro... product_image" />
+            <marker date="1521554802594" expanded="true" signature="8736:8789" placeholder="select count... product" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/frontend/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="185" column="111" selection-start-line="185" selection-start-column="111" selection-end-line="185" selection-end-column="111" />
+          <folding>
+            <marker date="1521642689195" expanded="true" signature="6576:6613" placeholder="select * fro... product" />
+            <marker date="1521642689195" expanded="true" signature="7370:7417" placeholder="select * fro... product_image" />
+            <marker date="1521642689195" expanded="true" signature="9034:9232" placeholder="SELECT (b.`n... brands" />
+            <marker date="1521642689195" expanded="true" signature="13876:14048" placeholder="SELECT * FRO... product" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/php_filesystem-ajax/action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="198" column="2" selection-start-line="198" selection-start-column="2" selection-end-line="198" selection-end-column="2" />
+          <folding>
+            <marker date="1521645135242" expanded="true" signature="1165:1350" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="1173:1346" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="1484:2130" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="2213:2265" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="3549:3631" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="3557:3628" placeholder="..." />
+            <marker date="1521645135242" expanded="true" signature="3913:4267" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/php_filesystem-ajax/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="2" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/php_filesystem-ajax/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/insert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="62" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="62" />
+          <folding>
+            <marker date="1521650780790" expanded="true" signature="293:368" placeholder="INSERT INTO user... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+          <folding>
+            <marker date="1521650780663" expanded="true" signature="179:263" placeholder="UPDATE user " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/delete.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+          <folding>
+            <marker date="1521650780853" expanded="true" signature="112:158" placeholder="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webslesson/live_add_edit_delete/fetch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="62" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+          <folding>
+            <marker date="1521650780714" expanded="true" signature="140:158" placeholder="SELECT * FRO... user" />
+            <marker date="1521650780714" expanded="true" signature="1334:1352" placeholder="SELECT * FRO... user" />
+          </folding>
         </state>
       </provider>
     </entry>

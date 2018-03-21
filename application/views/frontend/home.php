@@ -154,10 +154,11 @@
                                     </a>
                                     <span class="sale">sale</span>
                                     <div class="product-icon">
-                                        <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                                class="icon ion-bag"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                                class="icon ion-android-options"></i></a>
+                                        <button type="button" name="add_cart"
+                                                class="btn btn-success add_cart" data-productname="<?=$product['product_name']?>"
+                                                data-price="<?=$product['sale_price'];?>"
+                                                data-productid="<?=$product['product_id'];?>"
+                                                title="Add to Cart"><i class="icon ion-bag"></i> </button>
                                         <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
                                                 class="icon ion-android-open"></i></a>
                                     </div>
@@ -182,11 +183,11 @@ AND p.`product_id` = $p_id")->row_array();
                                             </ul>
                                         </div>
                                     </div>
-                                    <h2><a href="product-details.html"><?=$product['product_name']?></a>
+                                    <h2><a href="<?=base_url()?>Home/get_product_detail/<?=$product['product_id'];?>"><?=$product['product_name']?></a>
                                     </h2>
                                     <div class="price">
                                         <ul>
-                                            <li class="new-price">$122.00</li>
+                                            <li class="new-price"><?=$product['sale_price']?></li>
                                         </ul>
                                     </div>
                                 </div>
