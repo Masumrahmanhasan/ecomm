@@ -100,12 +100,7 @@
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="list-unstyled-2">
-                            <ul>
-                                <li>Ex Tax: $100.00</li>
-                                <li>Reward Points: %s 200</li>
-                            </ul>
-                        </div>
+
                         <div class="list-unstyled">
                             <ul>
                                 <li>Brands <a href="#"><?= $product_detail['name'] ?></a></li>
@@ -125,9 +120,14 @@
                         </div>
                         <form action="#">
                             <div class="quality-button">
-                                <input class="qty" id="<?=$product_detail['product_id'];?>" type="text" value="1"/>
-                                <input type="button" value="+" data-max="1000" class="plus"/>
-                                <input type="button" value="-" data-min="1" class="minus"/>
+
+                                <input  type="number" class="qty quantity-field cart_quantity" min="1"
+                                        max="<?php echo $product_detail['current_stock']; ?>" name='qty'
+                                        value="1" style="width: 100px;" id='<?=$product_detail['product_id'];?>'/>
+
+
+                                <input type="button" value="+" onclick='increase_val();' class="plus"/>
+                                <input type="button" value="-" onclick='decrease_val();' class="minus"/>
                             </div>
                             <button type="button" name="add_cart"
                                     class="btn btn-success add_cart" data-productname="<?=$product_detail['product_name']?>"
@@ -139,6 +139,7 @@
                                 <a href="#" data-toggle="tooltip" title="Compare this Product"><i
                                         class="icon ion-android-options"></i></a>
                             </div>
+
                         </form>
                     </div>
                     <!-- zoom-product-details-end -->
@@ -495,5 +496,23 @@
     </div>
 </div>
 <script>
+    function decrease_val(){
+        var value=$('.quantity-field').val();
+        if(value > 1){
+            var value=--value;
+        }
+        $('.quantity-field').val(value);
+    }
+    function increase_val(){
+        var value=$('.quantity-field').val();
+        var max_val =parseInt($('.quantity-field').attr('max'));
+        if(value < max_val){
+            var value=++value;
+        }
+        else if(value = max_val){
+            toastr.warning("Stock Limit reached");
+        }
+        $('.quantity-field').val(value);
+    }
 
 </script>
