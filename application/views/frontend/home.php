@@ -155,10 +155,11 @@
                                     </a>
                                     <span class="sale">sale</span>
                                     <div class="product-icon">
-                                        <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                                class="icon ion-bag"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                                class="icon ion-android-options"></i></a>
+                                        <button type="button" name="add_cart"
+                                                class="btn btn-success add_cart" data-productname="<?=$product['product_name']?>"
+                                                data-price="<?=$product['sale_price'];?>"
+                                                data-productid="<?=$product['product_id'];?>"
+                                                title="Add to Cart"><i class="icon ion-bag"></i> </button>
                                         <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
                                                 class="icon ion-android-open"></i></a>
                                     </div>
@@ -179,11 +180,11 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <h2><a href="product-details.html"><?=$product['product_name']?></a>
+                                    <h2><a href="<?=base_url()?>Home/get_product_detail/<?=$product['product_id'];?>"><?=$product['product_name']?></a>
                                     </h2>
                                     <div class="price">
                                         <ul>
-                                            <li class="new-price">$122.00</li>
+                                            <li class="new-price"><?=$product['sale_price']?></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -257,15 +258,22 @@
         <div class="tab-content">
             <div class="row">
                 <div class="product-active">
+                    <?php
+                    $products_latest = $this->db->query("SELECT * FROM 
+product AS p, brands AS b,product_image as pi
+WHERE p.`brand_id` = b.`id`
+AND pi.product_id = p.product_id
+AND pi.class= 'primary' ORDER BY p.product_id DESC ")->result_array();
+                    foreach ($products_latest as $product) { $p_id = $product['product_id'];
+                    $sub = $product['sub_cat_id'];
+                    ?>
                     <div class="col-lg-12">
                         <!-- product-wrapper-start -->
                         <div class="product-wrapper">
                             <div class="product-img">
                                 <a href="#">
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/23.jpg" alt="product"
+                                    <img src="<?= base_url() ?><?=$product['image_name'];?>" alt="product"
                                          class="primary"/>
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/24.jpg" alt="product"
-                                         class="secondary"/>
                                 </a>
                                 <span class="sale">sale</span>
                                 <div class="product-icon">
@@ -279,7 +287,7 @@
                             </div>
                             <div class="product-content pt-20">
                                 <div class="manufacture-product">
-                                    <a href="#">Chanel</a>
+                                    <a href="#"><?=$product['name'];?></a>
                                     <div class="rating">
                                         <ul>
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -291,190 +299,18 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h2><a href="product-details.html">Sopo Designs Woolrich Klettersack Backpack</a></h2>
+                                <h2><a href="product-details.html"><?=$product['product_name'];?></a></h2>
                                 <div class="price">
                                     <ul>
-                                        <li class="new-price">$122.00</li>
+                                        <li class="new-price">Rs.<?=$product['sale_price'];?></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <!-- product-wrapper-end -->
                     </div>
-                    <div class="col-lg-12">
-                        <!-- product-wrapper-start -->
-                        <div class="product-wrapper">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/31.jpg" alt="product"
-                                         class="primary"/>
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/32.jpg" alt="product"
-                                         class="secondary"/>
-                                </a>
-                                <div class="product-icon">
-                                    <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                            class="icon ion-bag"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                            class="icon ion-android-options"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
-                                            class="icon ion-android-open"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content pt-20">
-                                <div class="manufacture-product">
-                                    <a href="#">Dior</a>
-                                    <div class="rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h2><a href="product-details.html">Topo Designs Woolrich Klettersack Backpack</a></h2>
-                                <div class="price">
-                                    <ul>
-                                        <li class="new-price">$122.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product-wrapper-end -->
-                    </div>
-                    <div class="col-lg-12">
-                        <!-- product-wrapper-start -->
-                        <div class="product-wrapper">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/7.jpg" alt="product"
-                                         class="primary"/>
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/8.jpg" alt="product"
-                                         class="secondary"/>
-                                </a>
-                                <span class="sale">sale</span>
-                                <div class="product-icon">
-                                    <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                            class="icon ion-bag"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                            class="icon ion-android-options"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
-                                            class="icon ion-android-open"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content pt-20">
-                                <div class="manufacture-product">
-                                    <a href="#">Chanel </a>
-                                    <div class="rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h2><a href="product-details.html">Dopo Designs Woolrich Klettersack Backpack</a></h2>
-                                <div class="price">
-                                    <ul>
-                                        <li class="new-price">$122.00</li>
-                                        <li class="old-price">$98.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product-wrapper-end -->
-                    </div>
-                    <div class="col-lg-12">
-                        <!-- product-wrapper-start -->
-                        <div class="product-wrapper">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/11.jpg" alt="product"
-                                         class="primary"/>
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/12.jpg" alt="product"
-                                         class="secondary"/>
-                                </a>
-                                <div class="product-icon">
-                                    <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                            class="icon ion-bag"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                            class="icon ion-android-options"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
-                                            class="icon ion-android-open"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content pt-20">
-                                <div class="manufacture-product">
-                                    <a href="#">Chanel</a>
-                                    <div class="rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h2><a href="product-details.html">Eopo Designs Woolrich Klettersack Backpack</a></h2>
-                                <div class="price">
-                                    <ul>
-                                        <li class="new-price">$98.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product-wrapper-end -->
-                    </div>
-                    <div class="col-lg-12">
-                        <!-- product-wrapper-start -->
-                        <div class="product-wrapper">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/33.jpg" alt="product"
-                                         class="primary"/>
-                                    <img src="<?= base_url() ?>frontend_assets/img/product/34.jpg" alt="product"
-                                         class="secondary"/>
-                                </a>
-                                <div class="product-icon">
-                                    <a href="#" data-toggle="tooltip" title="Add to Cart"><i
-                                            class="icon ion-bag"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Compare this Product"><i
-                                            class="icon ion-android-options"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#mymodal" title="Quick View"><i
-                                            class="icon ion-android-open"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content pt-20">
-                                <div class="manufacture-product">
-                                    <a href="#">IVY Moda</a>
-                                    <div class="rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h2><a href="product-details.html">Ropo Designs Woolrich Klettersack Backpack</a></h2>
-                                <div class="price">
-                                    <ul>
-                                        <li class="new-price">$142.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product-wrapper-end -->
-                    </div>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>

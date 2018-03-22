@@ -211,7 +211,11 @@ CREATE TABLE `product` (
 
 /*Data for the table `product` */
 
+<<<<<<< HEAD
 insert  into `product`(`product_id`,`product_name`,`description`,`cat_id`,`sub_cat_id`,`brand_id`,`sale_price`,`purchase_price`,`discount`,`date_of_added`,`date_of_updated`,`tags`,`featured`,`deal`,`status`,`user_id`,`views`,`download`,`num_of_imgs`,`current_stock`,`tax`,`tax_type`,`discount_type`,`shipping_cost`,`requirements`,`product_file`,`color`,`size`,`ad_field_names`,`ad_field_values`) values (1,'imran','aknskanskansnan\r\naskanskanskanlks',1,1,1,120.00,130.00,2.00,'2018-03-15','2018-03-15','computer','ok','0','ok',NULL,NULL,NULL,'2',36,'1','percent','percent','0','[]',NULL,'#ccc,#000,#ffffff','S,M',NULL,NULL),(2,'Kifayat','asasaa',1,1,1,120.00,140.00,2.00,'2018-03-16','2018-03-16','asd','0','0','0',NULL,NULL,NULL,'2',35,'1','percent','percent','0','[]',NULL,'#000,#333','S,M',NULL,NULL),(3,'asad','asaa',1,1,1,1.00,1.00,1.00,'2018-03-16','2018-03-16','mm','no','0','ok',NULL,NULL,NULL,'2',12,'11','percent','percent','0','[]',NULL,'#ccc,#ccc,#ccc','S,M,L',NULL,NULL),(4,'HUSH SHOES','asasa',2,5,8,120.00,190.00,0.00,'2018-03-18','2018-03-18','asdf','no',NULL,'ok',NULL,NULL,NULL,'2',NULL,'0','percent','percent','0','[]',NULL,'#000,#ccc','S,M',NULL,NULL),(5,'imran','hghgh',1,1,1,90.00,120.00,0.00,'2018-03-18','2018-03-18','m','no',NULL,'ok',NULL,NULL,NULL,'1',NULL,'0','percent','percent','0','[]',NULL,'#ccc','S',NULL,NULL);
+=======
+insert  into `product`(`product_id`,`product_name`,`description`,`cat_id`,`sub_cat_id`,`brand_id`,`sale_price`,`purchase_price`,`discount`,`date_of_added`,`date_of_updated`,`tags`,`featured`,`deal`,`status`,`user_id`,`views`,`download`,`num_of_imgs`,`current_stock`,`tax`,`tax_type`,`discount_type`,`shipping_cost`,`requirements`,`product_file`,`color`,`size`,`ad_field_names`,`ad_field_values`) values (1,'imran','aknskanskansnan\r\naskanskanskanlks',1,1,1,120.00,130.00,2.00,'2018-03-15','2018-03-15','computer','ok','ok','ok',NULL,NULL,NULL,'2',3,'1','percent','percent','0','[]',NULL,'#ccc,#000,#ffffff','S,M',NULL,NULL),(2,'Kifayat','asasaa',1,1,1,120.00,140.00,2.00,'2018-03-16','2018-03-16','asd','0','0','0',NULL,NULL,NULL,'2',10,'1','percent','percent','0','[]',NULL,'#000,#333','S,M',NULL,NULL),(3,'asad','asaa',1,1,1,1.00,1.00,1.00,'2018-03-16','2018-03-16','mm','no','0','ok',NULL,NULL,NULL,'2',12,'11','percent','percent','0','[]',NULL,'#ccc,#ccc,#ccc','S,M,L',NULL,NULL),(4,'HUSH SHOES','asasa',2,5,8,120.00,190.00,0.00,'2018-03-18','2018-03-18','asdf','no',NULL,'ok',NULL,NULL,NULL,'2',NULL,'0','percent','percent','0','[]',NULL,'#000,#ccc','S,M',NULL,NULL),(5,'imran','hghgh',1,1,1,90.00,120.00,0.00,'2018-03-18','2018-03-18','m','no',NULL,'ok',NULL,NULL,NULL,'1',NULL,'0','percent','percent','0','[]',NULL,'#ccc','S',NULL,NULL);
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
 
 /*Table structure for table `product_image` */
 
@@ -228,6 +232,7 @@ CREATE TABLE `product_image` (
 /*Data for the table `product_image` */
 
 insert  into `product_image`(`p_img_id`,`image_name`,`product_id`,`class`) values (1,'uploads/product_image/product_1_5.jpg',1,'primary'),(2,'uploads/product_image/product_1_6.jpg',1,NULL),(3,'uploads/product_image/product_2_1.jpg',2,'primary'),(4,'uploads/product_image/product_2_2.jpg',2,NULL),(5,'uploads/product_image/product_3_1.jpg',3,'primary'),(6,'uploads/product_image/product_3_2.jpg',3,NULL),(9,'uploads/product_image/product_4_1.jpg',4,'primary'),(10,'uploads/product_image/product_4_2.jpg',4,NULL),(11,'uploads/product_image/product_5_1.jpg',5,'primary');
+<<<<<<< HEAD
 
 /*Table structure for table `product_review` */
 
@@ -247,6 +252,8 @@ CREATE TABLE `product_review` (
 /*Data for the table `product_review` */
 
 insert  into `product_review`(`id`,`customer_id`,`product_id`,`stars`,`review`,`name`,`email`) values (1,2,3,5,'Tail sed sausage magna quis commodo swine. Aliquip strip steak esse ex in ham hock\r\n                                    fugiat in. Labore velit pork belly eiusmod ut shank doner capicola consectetur\r\n                                    landjaeger fugiat excepteur short loin. Pork belly laboris mollit in leberkas qui.\r\n                                    Pariatur swine aliqua pork chop venison veniam. Venison sed cow short loin bresaola\r\n                                    shoulder cupidatat capicola drumstick dolore magna shankle.','sssssssss','aneeskhan@yopmail.com'),(2,2,4,5,'aaaaaaaaaa','sasa','aneeskhan@yopmail.com');
+=======
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
 
 /*Table structure for table `slider` */
 

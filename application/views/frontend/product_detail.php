@@ -34,29 +34,20 @@
 <div class="shop-main-area">
     <div class="container">
         <div class="row">
-            <?php foreach ($product_details as $product_detail) { ?>
+            <?php foreach ($product_details as $product_detail) { $id = $product_detail['product_id'];?>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!-- zoom-area-start -->
                     <div class="zoom-area mb-3">
                         <img id="zoompro" src="<?= base_url() ?><?=$product_detail['image_name']?>"
                              data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/1.jpg" alt="zoom"/>
                         <div id="gallery" class="mt-30">
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/1.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/1.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/1.jpg" alt="zoom"/>
+                            <?php $images = $this->db->query("select * from product_image where product_id = $id")->result_array();?>
+                            <?php foreach ($images as $image) { ?>
+                            <a href="#" data-image="<?= base_url() ?><?=$image['image_name'];?>"
+                               data-zoom-image="<?= base_url() ?><?=$image['image_name'];?>">
+                                <img src="<?= base_url() ?><?=$image['image_name'];?>" alt="zoom"/>
                             </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/2.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/2.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/2.jpg" alt="zoom"/>
-                            </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/3.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/3.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/3.jpg" alt="zoom"/>
-                            </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/4.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/4.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/4.jpg" alt="zoom"/>
-                            </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- zoom-area-end -->
@@ -100,12 +91,7 @@
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="list-unstyled-2">
-                            <ul>
-                                <li>Ex Tax: $100.00</li>
-                                <li>Reward Points: %s 200</li>
-                            </ul>
-                        </div>
+
                         <div class="list-unstyled">
                             <ul>
                                 <li>Brands <a href="#"><?= $product_detail['name'] ?></a></li>
@@ -149,9 +135,14 @@
                         </div>-->
                         <form action="#">
                             <div class="quality-button">
-                                <input class="qty" id="<?=$product_detail['product_id'];?>" type="text" value="1"/>
-                                <input type="button" value="+" data-max="1000" class="plus"/>
-                                <input type="button" value="-" data-min="1" class="minus"/>
+
+                                <input  type="number" class="qty quantity-field cart_quantity" min="1"
+                                        max="<?php echo $product_detail['current_stock']; ?>" name='qty'
+                                        value="1" style="width: 100px;" id='<?=$product_detail['product_id'];?>'/>
+
+
+                                <input type="button" value="+" onclick='increase_val();' class="plus"/>
+                                <input type="button" value="-" onclick='decrease_val();' class="minus"/>
                             </div>
                             <button type="button" name="add_cart"
                                     class="btn btn-success add_cart" data-productname="<?=$product_detail['product_name']?>"
@@ -164,6 +155,7 @@
                                 <a href="#" data-toggle="tooltip" title="Compare this Product"><i
                                         class="icon ion-android-options"></i></a>
                             </div>
+
                         </form>
                     </div>
                     <!-- zoom-product-details-end -->
@@ -534,5 +526,23 @@
     </div>
 </div>
 <script>
+    function decrease_val(){
+        var value=$('.quantity-field').val();
+        if(value > 1){
+            var value=--value;
+        }
+        $('.quantity-field').val(value);
+    }
+    function increase_val(){
+        var value=$('.quantity-field').val();
+        var max_val =parseInt($('.quantity-field').attr('max'));
+        if(value < max_val){
+            var value=++value;
+        }
+        else if(value = max_val){
+            toastr.warning("Stock Limit reached");
+        }
+        $('.quantity-field').val(value);
+    }
 
 </script>

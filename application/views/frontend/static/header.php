@@ -8,7 +8,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <!-- logo-area-start -->
                     <div class="logo-area">
-                        <a href="index.html"><img src="<?= base_url()?>frontend_assets/img/logo/1.png" alt="logo" /></a>
+                        <a href="<?=base_url()?>Home"><img src="<?= base_url()?>frontend_assets/img/logo/1.png" alt="logo" /></a>
                     </div>
                     <!-- logo-area-end -->
                 </div>
@@ -17,7 +17,7 @@
                     <div class="menu-area">
                         <nav>
                             <ul>
-                                <li class="active"><a href="index.html">Home</a>
+                                <li class="active"><a href="<?=base_url()?>Home">Home</a>
                                 </li>
                                 <?php
                                 $category = $this->Admin_model->getAll('category');
