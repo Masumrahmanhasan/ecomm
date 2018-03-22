@@ -136,7 +136,8 @@
             <div class="tab-pane <?php if($item['id'] == 1)echo "active";?>" id="<?=$item['id']?>">
                 <div class="row">
                     <div class="product-active">
-                        <?php foreach ($products as $product) { $p_id = $product['product_id'];
+                        <?php foreach ($products as $product) { 
+                            $p_id = $product['product_id'];
                             $sub = $product['sub_cat_id'];
                             ?>
                         <div class="col-lg-12">
@@ -164,11 +165,7 @@
                                 </div>
                                 <div class="product-content pt-20">
                                     <div class="manufacture-product">
-                                        <?php $brand = $this->db->query("SELECT (b.`name`) AS brand_name FROM brands AS b, sub_category AS s, category AS c, product AS p
-WHERE p.`cat_id` = c.`id`
-AND p.`sub_cat_id` = s.`id`
-AND p.`brand_id` = b.`id`
-AND p.`product_id` = $p_id")->row_array();
+                                        <?php $brand = $this->db->query("SELECT (b.`name`) AS brand_name FROM brands AS b, sub_category AS s, category AS c, product AS p WHERE p.`cat_id` = c.`id` AND p.`sub_cat_id` = s.`id` AND p.`brand_id` = b.`id` AND p.`product_id` = $p_id")->row_array();
                                         // foreach ($p_images as $p_image) {
                                         ?>
                                         <a href="#"><?=$brand['brand_name'];?></a>

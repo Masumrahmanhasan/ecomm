@@ -198,6 +198,44 @@
         });
 
     });
+    /*
+    * BY ANEES
+     */
+     $('body').on('click','#star',function(){
+        $(this).attr('data-value','selected');
+     });
+     $('body').on('submit','.reviews-form',function(e){
+//        star = $('#star').data('value').data('star');
+        
+        var star = 5;
+        var name = $('input[name=name]').val();
+        var email = $('input[name=email]').val();
+        var product_id = $('input[name=product_id]').val();
+        var review = $('#comment').val(); 
+        $.ajax({
+                   url: "<?=base_url('Home/add_review')?>",
+                   method: "POST",
+                   data: {
+                       star: star,
+                       name: name,
+                       review: review,
+                       product_id:product_id,
+                       email:email
+                          },
+                   success: function (data) {
+                       if(data == 1){
+                            toastr.success("Thanks! Review Added Successfully");
+                            var name = $('input[name=name]').val(" ");
+                            var email = $('input[name=email]').val(" ");
+                            var review = $('#comment').val(" "); 
+                         }else{
+                             toastr.warning("Error! Something really bad happend");
+                         }
+                   }
+               });
+         e.preventDefault();
+        return false;
+     });
 </script>
 </body>
 </html>

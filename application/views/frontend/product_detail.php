@@ -83,10 +83,10 @@
                         </div>
                         <?php if ($product_detail['discount'] > 0) { ?>
                             <div class="price-box">
-                             <span class="price"> Rs.<?= $product_detail['purchase_price']; ?>
+                             <span class="price"> Rs.<?= $product_detail['sale_price']; ?>
                                  <unit>/</unit>
                                           </span>
-                                <span class="price-strike">Rs.2,250.00</span>
+                                <span class="price-strike">Rs.<?= $product_detail['purchase_price']; ?></span>
                                     <span class="label label-success">
 						Discount: <?= $product_detail['discount']; ?> %
                                     </span>
@@ -109,10 +109,34 @@
                         <div class="list-unstyled">
                             <ul>
                                 <li>Brands <a href="#"><?= $product_detail['name'] ?></a></li>
-                                <li>Availability: <a href="#">In Stock</a></li>
+                                <?php if($product_detail['current_stock'] !== 0){
+                                    $stock = 'In Stock';
+                                    $cart_btn = "";
+                                    $colrs = explode( ",",$product_detail['color']);
+                                }else{ 
+                                    $stock= 'Out of Stock';
+                                     $cart_btn = "disabled";
+                                     $colrs = NULL;
+                                }
+                                    ?>
+                                <li>Availability: <a href="#"><?=$stock?></a></li>
                             </ul>
                         </div>
                         <div class="catagory-select mb-30">
+                            <h3>Available Options</h3>
+                            <form action="#">
+                                <?php if($colrs !== NULL):?>
+                                    <label for="#">Select:Color</label>
+                                    <select class="sorter-options" data-role="sorter">
+                                        <?php foreach($colrs AS $colrs):?>
+                                            <option value="Product"><?=$colrs?></option>
+                                        <?php endforeach;?>
+                                    </select
+                                <?php endif;?>
+                            
+                            </form>
+                        </div>
+                        <!--<div class="catagory-select mb-30">
                             <h3>Available Options</h3>
                             <form action="#">
                                 <label for="#">Select:</label>
@@ -122,7 +146,7 @@
                                     <option value="Product">Green</option>
                                 </select>
                             </form>
-                        </div>
+                        </div>-->
                         <form action="#">
                             <div class="quality-button">
                                 <input class="qty" id="<?=$product_detail['product_id'];?>" type="text" value="1"/>
@@ -133,6 +157,7 @@
                                     class="btn btn-success add_cart" data-productname="<?=$product_detail['product_name']?>"
                                     data-price="<?=$product_detail['sale_price'];?>"
                                     data-productid="<?=$product_detail['product_id'];?>"
+                                    <?=$cart_btn;?>
                                     title="Add to Cart">Add To Cart</button>
                             <div class="product-icon">
 
@@ -153,7 +178,7 @@
                     <div class="tab-menu mb-30 text-center">
                         <ul>
                             <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
-                            <li><a href="#Reviews" data-toggle="tab">Reviews (0)</a></li>
+                            <li><a href="#Reviews" data-toggle="tab">Reviews (<strong><?=count($review)?></strong>)</a></li>
                             <li><a href="#Tags" data-toggle="tab">Add Tags</a></li>
                         </ul>
                     </div>
@@ -188,30 +213,44 @@
                     </div>
                     <div class="tab-pane fade" id="Reviews">
                         <div class="col-lg-12">
-                            <div class="reviews-area">
-                                <h3>Reviews</h3>
-                                <p>Be the first to review “Apple 16Gb iPad Mini” </p>
-                                <div class="rating-area mb-10">
-                                    <h4>Your Rating</h4>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
+                            <form class="reviews-form" method="post" onsubmit="return false;">
+                                <div class="reviews-area">
+                                    <h3>Reviews</h3>
+                                    <?php if(count($review)<1):?>
+                                        <p>Be the first to review “Apple 16Gb iPad Mini” </p>
+                                    <?php else:?>
+                                        <?php foreach($review as $review):?>
+                                            <p><?=$review->review;?></p>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                    <div class="rating-area mb-10" id="rating-area">
+                                        <h4>Your Rating</h4>
+                                        <!--<a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>-->
+                                        <a href="#"><i id ="star" data-star ="1" class="fa fa-star"></i></a>
+                                        <a href="#"><i id ="star" data-star ="2"class="fa fa-star"></i></a>
+                                        <a href="#"><i id ="star" data-star ="3"class="fa fa-star"></i></a>
+                                        <a href="#"><i id ="star" data-star ="4"class="fa fa-star"></i></a>
+                                        <a href="#"><i id ="star" data-star ="5"class="fa fa-star"></i></a>
+                                    </div>
+                                    <div class="comment-form mb-10">
+                                        <label>Your Review</label>
+                                        <textarea name="comment" id="comment" cols="20" rows="7" required=""></textarea>
+                                    </div>
+                                    <div class="comment-form-author mb-10">
+                                        <label>Name</label>
+                                        <input name ="name" type="text" required=""/>
+                                    </div>
+                                    <div class="comment-form-email mb-10">
+                                        <label>email</label>
+                                        <input name="email" type="email" required=""/>
+                                        <input type="hidden" name="product_id" value="<?=$product_detail['product_id'];?>"/>
+                                    </div>
+                                    <button type="submit">submit</button>
                                 </div>
-                                <div class="comment-form mb-10">
-                                    <label>Your Review</label>
-                                    <textarea name="comment" id="comment" cols="20" rows="7"></textarea>
-                                </div>
-                                <div class="comment-form-author mb-10">
-                                    <label>Name</label>
-                                    <input type="text"/>
-                                </div>
-                                <div class="comment-form-email mb-10">
-                                    <label>email</label>
-                                    <input type="text"/>
-                                </div>
-                                <button type="submit">submit</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="Tags">
