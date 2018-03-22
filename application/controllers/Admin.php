@@ -1490,11 +1490,13 @@ $this->db->update('product', $da); */
             $data['num_of_imgs'] = $num_of_imgs;
             $data['color'] = $c;
             $data['size'] = $s;
-            // print_r($data);exit;
+            $p_id = $this->input->post('product_id');
+             //print_r($data);exit;
             $this->Admin_model->file_up("images", "product", $para2, 'multi');
 
-            $this->db->where('product_id', $para2);
+            $this->db->where('product_id', $p_id);
             $this->db->update('product', $data);
+            //echo $this->db->last_query();exit;
            // $this->crud_model->set_category_data(0);
            // recache();
             echo json_encode((["msg_type" => "success", "message" => "Product Updated Successfully"]));
@@ -1505,6 +1507,13 @@ $this->db->update('product', $da); */
         else {
             redirect(base_url() . 'Admin/all_product');
         }
+    }
+
+    function dlt_img($para2){
+            $a = explode('_', $para2);
+            $this->Admin_model->file_dlt('product', $a[0], '.jpg', 'multi', $a[1]);
+
+
     }
 
 }

@@ -39,6 +39,7 @@
                                           <span class="input-group-addon">
                                                 <span class="icon icon-th-large"></span>
                                           </span>
+                                                <input type="hidden" name="product_id" value="<?=$row['product_id'];?>">
                                                 <input class="form-control" type="text" name="title" value="<?php echo $row['product_name']; ?>" id="name" placeholder="Name">
                                             </div>
                                         </div>
@@ -657,6 +658,40 @@
     $('body').on('click', '.rmc', function(){
         $(this).parent().parent().remove();
     });
+
+    $('.delete-div-wrap .close').on('click', function () {
+        var pid = $(this).closest('.delete-div-wrap').find('img').data('id');
+        var here = $(this);
+        msg = 'Really want to delete this Image?';
+        bootbox.confirm(msg, function (result) {
+            if (result) {
+                $.ajax({
+                    url: base_url + 'index.php/Admin/dlt_img/' + pid,
+                    cache: false,
+                    success: function (data) {
+                        $.activeitNoty({
+                            type: 'success',
+                            icon: 'fa fa-check',
+                            message: 'Deleted Successfully',
+                            container: 'floating',
+                            timer: 3000
+                        });
+                        here.closest('.delete-div-wrap').remove();
+                    }
+                });
+            } else {
+                $.activeitNoty({
+                    type: 'danger',
+                    icon: 'fa fa-minus',
+                    message: 'Cancelled',
+                    container: 'floating',
+                    timer: 3000
+                });
+            }
+            ;
+        });
+    });
+
 
 
     $(document).ready(function() {

@@ -34,29 +34,20 @@
 <div class="shop-main-area">
     <div class="container">
         <div class="row">
-            <?php foreach ($product_details as $product_detail) { ?>
+            <?php foreach ($product_details as $product_detail) { $id = $product_detail['product_id'];?>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!-- zoom-area-start -->
                     <div class="zoom-area mb-3">
                         <img id="zoompro" src="<?= base_url() ?><?=$product_detail['image_name']?>"
                              data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/1.jpg" alt="zoom"/>
                         <div id="gallery" class="mt-30">
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/1.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/1.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/1.jpg" alt="zoom"/>
+                            <?php $images = $this->db->query("select * from product_image where product_id = $id")->result_array();?>
+                            <?php foreach ($images as $image) { ?>
+                            <a href="#" data-image="<?= base_url() ?><?=$image['image_name'];?>"
+                               data-zoom-image="<?= base_url() ?><?=$image['image_name'];?>">
+                                <img src="<?= base_url() ?><?=$image['image_name'];?>" alt="zoom"/>
                             </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/2.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/2.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/2.jpg" alt="zoom"/>
-                            </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/3.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/3.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/3.jpg" alt="zoom"/>
-                            </a>
-                            <a href="#" data-image="<?= base_url() ?>frontend_assets/img/zoom/small/4.jpg"
-                               data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/4.jpg">
-                                <img src="<?= base_url() ?>frontend_assets/img/zoom/thumb/4.jpg" alt="zoom"/>
-                            </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- zoom-area-end -->

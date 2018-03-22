@@ -78,7 +78,7 @@
 
                                         <a href="#" onclick="showAjaxModal('<?php echo base_url();?>Admin/take_payments/<?=$product[$i]['product_id']?>')" class="btn btn-info btn-sm btn-labeled fa fa-location-arrow">
                                             <i class="entypo-bookmarks"></i>
-                                           Add Stock
+                                           Stock
                                         </a>
 
 
