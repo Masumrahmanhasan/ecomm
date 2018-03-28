@@ -304,7 +304,10 @@ class Admin extends CI_Controller
             } else {
                 $id = $this->input->post('id');
                 $this->Admin_model->update_category($_POST, $id);
-                echo json_encode((["msg_type" => "success", "message" => "Category Updated Successfully"]));
+                echo json_encode((["msg_type" => "success",
+                    "message" => "Category Updated Successfully",
+                    "link" => base_url().'Admin/manage_category',
+                ]));
             }
         }
     }
@@ -1391,10 +1394,27 @@ $this->db->update('product', $da); */
             //recache();
         }
         else if ($para1 == 'edit') {
-            $page_data['product_data'] = $this->db->get_where('product', array(
-                'product_id' => $para2
-            ))->result_array();
+            $page_data['product_data'] = $this->db->query("SELECT 
+  p.*,
+  (c.`name`) AS cat_name,
+  (sc.`name`) AS sub_cat,
+  (b.`name`) AS brand_name
+FROM
+  product AS p,
+  brands AS b,
+  product_image AS PI,
+  category AS c,
+  sub_category AS sc
+WHERE p.`brand_id` = b.`id` 
+  AND pi.product_id = p.product_id 
+  AND pi.class = 'primary' 
+  AND p.`product_id` = $para2 
+  AND p.`cat_id` = c.`id`
+  AND p.`sub_cat_id` = sc.`id`")->result_array();
+            //print_r("");
             $page_data['company_info'] = $this->Admin_model->get_company_info();
+            $page_data['category'] = $this->Admin_model->getAll('category');
+            $page_data['sub_category'] = $this->Admin_model->getAll('sub_category');
             $page_data['title'] = $page_data['company_info']['name'] . " | Add Category";
             $page_data['menu'] = $this->Admin_model->getMenuItems('admin_menu');
             $page_data['theme'] = $this->Admin_model->getActiveTheme();
@@ -1458,13 +1478,13 @@ $this->db->update('product', $da); */
         }
         else if ($para1 == "update") {
             $options = array();
-            if ($_FILES["images"]['name'][0] == '') {
+            /*if ($_FILES["images"]['name'][0] == '') {
                 $num_of_imgs = 0;
             } else {
                 $num_of_imgs = count($_FILES["images"]['name']);
-            }
-            $num                        = $this->Admin_model->get_type_name_by_id('product', $para2, 'num_of_imgs');
-            $download                   = $this->Admin_model->get_type_name_by_id('product', $para2, 'download');
+            }*/
+            $num = $this->Admin_model->get_type_name_by_id('product', $para2, 'num_of_imgs');
+            $download = $this->Admin_model->get_type_name_by_id('product', $para2, 'download');
             $color = $this->input->post('color');
             $c = implode(",", $color);
             $size = $this->input->post('size');
@@ -1472,8 +1492,8 @@ $this->db->update('product', $da); */
             $data['product_name'] = $this->input->post('title');
             $data['cat_id'] = $this->input->post('category');
             $data['description'] = $this->input->post('description');
-            $data['sub_cat_id'] = $this->input->post('sub_category');
-            $data['brand_id'] = $this->input->post('brand');
+            $data['sub_cat_id'] = $this->input->post('sub_cat_id');
+            $data['brand_id'] = $this->input->post('brand_id');
             $data['sale_price'] = $this->input->post('sale_price');
             $data['purchase_price'] = $this->input->post('purchase_price');
             $data['date_of_added'] = date("Y-m-d");
@@ -1487,31 +1507,30 @@ $this->db->update('product', $da); */
             $data['tax_type'] = $this->input->post('tax_type');
             $data['shipping_cost'] = 0;
             $data['tags'] = $this->input->post('tag');
-            $data['num_of_imgs'] = $num_of_imgs;
+            //$data['num_of_imgs'] = $num_of_imgs;
             $data['color'] = $c;
             $data['size'] = $s;
             $p_id = $this->input->post('product_id');
-             //print_r($data);exit;
-            $this->Admin_model->file_up("images", "product", $para2, 'multi');
+            //print_r($data);exit;
+            //$this->Admin_model->file_upUpdate("images", "product", $p_id, 'multi');
 
             $this->db->where('product_id', $p_id);
             $this->db->update('product', $data);
             //echo $this->db->last_query();exit;
-           // $this->crud_model->set_category_data(0);
-           // recache();
+            // $this->crud_model->set_category_data(0);
+            // recache();
             echo json_encode((["msg_type" => "success", "message" => "Product Updated Successfully"]));
 
             //redirect(base_url() . 'Admin/all_product');
-        }
-
-        else {
+        } else {
             redirect(base_url() . 'Admin/all_product');
         }
     }
 
-    function dlt_img($para2){
-            $a = explode('_', $para2);
-            $this->Admin_model->file_dlt('product', $a[0], '.jpg', 'multi', $a[1]);
+    function dlt_img($para2)
+    {
+        $a = explode('_', $para2);
+        $this->Admin_model->file_dlt('product', $a[0], '.jpg', 'multi', $a[1]);
 
 
     }

@@ -39,7 +39,7 @@
                     <!-- zoom-area-start -->
                     <div class="zoom-area mb-3">
                         <img id="zoompro" src="<?= base_url() ?><?=$product_detail['image_name']?>"
-                             data-zoom-image="<?= base_url() ?>frontend_assets/img/zoom/large/1.jpg" alt="zoom"/>
+                             data-zoom-image="<?= base_url() ?><?=$product_detail['image_name']?>" alt="zoom"/>
                         <div id="gallery" class="mt-30">
                             <?php $images = $this->db->query("select * from product_image where product_id = $id")->result_array();?>
                             <?php foreach ($images as $image) { ?>

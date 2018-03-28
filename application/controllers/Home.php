@@ -31,6 +31,12 @@ class Home extends CI_Controller
         $data['title'] = $data['company_info']['name']." | Home";
         $data['slides'] = $this->Home_model->getAll('slider');*/
         $data['category'] = $this->Admin_model->getAll('category');
+        $data['product_details'] = $this->db->query("SELECT * FROM 
+product AS p, brands AS b,product_image as pi
+WHERE p.`brand_id` = b.`id`
+AND pi.product_id = p.product_id
+AND pi.class= 'primary'")->result_array();
+        $data['featured'] = $this->Home_model->featured_products();
         /*  foreach ($data['category'] as $item) {
                                    echo $item['name']."<br>";
               $data['sub'] = $this->Home_model->getByIdImran('sub_category',array('cat_id',$item['id']));
@@ -50,10 +56,10 @@ class Home extends CI_Controller
           exit;*/
         //$data['sub_category'] = $this->Home_model->get('sub_category');
         $data['title'] = 'Home';
-        $this->load->view('frontend/static/head', $data);
-        $this->load->view('frontend/static/header');
-        $this->load->view('frontend/home');
-        $this->load->view('frontend/static/footer');
+        $this->load->view('frontend/header/header_1', $data);
+        //$this->load->view('frontend/static/header');
+        $this->load->view('frontend/home_new');
+        $this->load->view('frontend/footer/footer_1');
     }
 
     public function all_categories()
@@ -107,7 +113,8 @@ WHERE p.`brand_id` = b.`id`
 AND pi.product_id = p.product_id
 AND pi.class= 'primary'
 AND p.`product_id` = $para1")->result_array();
-                            // echo "<pre>";print_r($data['product_details']);exit;
+        //echo $this->db->last_query();
+        //                   echo "<pre>";print_r($data['product_details']);exit;
         $data['title'] = $data['company_info']['name'] . " | Contact Us";
         $this->load->view('frontend/static/head', $data);
         $this->load->view('frontend/static/header');
@@ -342,72 +349,68 @@ AND p.`product_id` = $para1")->result_array();
     {
         $this->load->library('cart');
         $data = array(
-            'id'=>$_POST['product_id'],
-            'name'=>$_POST['product_name'],
-            'price'=>$_POST['product_price'],
-            'qty'=>$_POST['quantity']
+            'id' => $_POST['product_id'],
+            'name' => $_POST['product_name'],
+            'price' => $_POST['product_price'],
+            'qty' => $_POST['quantity']
         );
 
         $this->cart->insert($data); // return rowid uniquely
         echo $this->view();
     }
-    function view(){
+
+    function view()
+    {
         $this->load->library('cart');
         $output = '';
-        $output .= '
-        <h3>Shopping Cart</h3>
-        <div class="table-responsive">
-        <div align="right">
-        <button type="button" id="clear_cart" class="btn btn-warning">Clear Cart</button>
-        <br/>
-        <table class="table table-bordered">
-        <tr>
-        <th width="40%">Name</th>
-        <th width="15%">Quantity</th>
-        <th width="15%">Price</th>
-        <th width="15%">Total</th>
-        <th width="15%">Action</th>
-</tr>  ';
-$count=0;
-foreach($this->cart->contents() as $items){
-$count ++;
-    $output .='
-    <tr>
-    <td>'.$items['name'].'</td>
-    <td>'.$items['qty'].'</td>
-    <td>'.$items['price'].'</td>
-    <td>'.$items['subtotal'].'</td>
-    <td><button type="button" name="remove" class="btn btn-warning btn-xs remove_inventory" id="'.$items['rowid'].'">Remove</button></td>   
-</tr>';
-}
-        $output .='
-<tr><td colspan="4" align="right">Total</td>
-<td>'.$this->cart->total().'</td>
-</tr>
-</table>
-</div>
-</div>';
-        if($count == 0){
-            $output .='<h3 align="center">Cart is Empty</h3>';
+        $count = 0;
+        foreach ($this->cart->contents() as $items) {
+            $count++;
+
+            $output .= '<div class="cart-item product-summary">
+	<div class="row media" data-rowid="2b24d495052a8ce66358eb576b8912c8">		
+	<div class="col-xs-7">		
+	 <h3 class="name"><a href="#">' . $items['qty'] . ' X ' . $items['name'] . '</a></h3>	
+<div class="price">Rs.' . $items['price'] . '</div>
+	</div> 
+	<div class="col-xs-1 action">
+	 <a href="#"><i class="fa fa-trash remove_one"></i></a> 
+	 </div>
+	  </div>
+	  </div>';
+
+        }
+        $output .= '<div class="clearfix cart-total">
+                                    <div class="pull-right"><span class="text">Sub Total :</span><span class="price shopping-cart__total">Rs.' . $this->cart->total() . '</span>
+                                    </div>
+                                  
+                                </div>';
+
+        if ($count == 0) {
+            $output .= '<h3 align="center">Cart is Empty</h3>';
         }
         return $output;
     }
 
-    function load(){
+    function load()
+    {
         echo $this->view();
     }
-    function remove(){
+
+    function remove()
+    {
         $this->load->library('cart');
         $row_id = $_POST['row_id'];
         $data = array(
-            'rowid'=>$row_id,
-            'qty'=>0
+            'rowid' => $row_id,
+            'qty' => 0
         );
         $this->cart->update($data);
         echo $this->view();
     }
 
-    function clear(){
+    function clear()
+    {
         $this->load->library('cart');
         $this->cart->destroy();
         echo $this->view();

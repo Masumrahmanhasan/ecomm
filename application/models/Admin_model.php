@@ -670,7 +670,7 @@ class Admin_model extends CI_Model
     }
 
     // FILE_UPLOAD
-    function file_up($name, $type, $id, $multi = '', $no_thumb = '', $ext = '.jpg')
+    function file_upUpdate($name, $type, $id, $multi = '', $no_thumb = '', $ext = '.jpg')
     {
         if ($multi == '') {
             move_uploaded_file($_FILES[$name]['tmp_name'], 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext);
@@ -688,7 +688,7 @@ class Admin_model extends CI_Model
                     'image_name'=>$image,
                     'product_id'=>$id
                 );
-                $this->db->insert('product_image',$images_data);
+                $this->db->update('product_image',$images_data);
                 if ($no_thumb == '') {
                     $this->Admin_model->img_thumb($type, $id . '_' . $ib, $ext);
                 }
@@ -757,7 +757,7 @@ class Admin_model extends CI_Model
             }
 
         } else if ($multi == 'multi') {
-            $num = $this->crud_model->get_type_name_by_id($type, $id, 'num_of_imgs');
+            $num = $this->Admin_model->get_type_name_by_id($type, $id, 'num_of_imgs');
             if ($m_sin == '') {
                 $i = 0;
                 $p = 0;
@@ -792,5 +792,6 @@ class Admin_model extends CI_Model
         }
     }
 
+    
 
 }
