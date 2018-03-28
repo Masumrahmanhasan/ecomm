@@ -30,6 +30,7 @@ class Home extends CI_Controller
         $data['company_info'] = $this->Admin_model->get_company_info();
         $data['title'] = $data['company_info']['name']." | Home";
         $data['slides'] = $this->Home_model->getAll('slider');*/
+
         $data['category'] = $this->Admin_model->getAll('category');
         $data['product_details'] = $this->db->query("SELECT * FROM 
 product AS p, brands AS b,product_image as pi
@@ -37,6 +38,7 @@ WHERE p.`brand_id` = b.`id`
 AND pi.product_id = p.product_id
 AND pi.class= 'primary'")->result_array();
         $data['featured'] = $this->Home_model->featured_products();
+        $data['category'] = $this->Admin_model->getAll('category');// print_r($data);die;
         /*  foreach ($data['category'] as $item) {
                                    echo $item['name']."<br>";
               $data['sub'] = $this->Home_model->getByIdImran('sub_category',array('cat_id',$item['id']));
@@ -113,8 +115,13 @@ WHERE p.`brand_id` = b.`id`
 AND pi.product_id = p.product_id
 AND pi.class= 'primary'
 AND p.`product_id` = $para1")->result_array();
+
         //echo $this->db->last_query();
         //                   echo "<pre>";print_r($data['product_details']);exit;
+
+        $data['review'] = $this->db->query('select * from product_review where product_id='.$para1)->result();
+//     echo "<pre>";print_r($data['reviews']);exit;
+
         $data['title'] = $data['company_info']['name'] . " | Contact Us";
         $this->load->view('frontend/static/head', $data);
         $this->load->view('frontend/static/header');
@@ -414,5 +421,22 @@ AND p.`product_id` = $para1")->result_array();
         $this->load->library('cart');
         $this->cart->destroy();
         echo $this->view();
+    }
+    function add_review(){
+        extract($_POST);
+        $data = array(
+            'customer_id' => 2,
+            'product_id'  => $product_id,
+            'stars'       => $star,
+            'review'        => $review,
+            'name'          => $name,
+            'email'         => $email
+        );
+        $status = $this->Home_model->insert_data('product_review',$data);
+        if($status == true):
+            echo 1;
+        else:
+            echo 2;
+        endif;
     }
 }

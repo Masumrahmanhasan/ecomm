@@ -176,10 +176,11 @@ class Home_model extends CI_Model
     public function getAllProducts()
     {
         return $this->db->query("SELECT * FROM 
-product AS p, brands AS b,product_image AS PI
+product AS p, brands AS b,product_image AS pimg
 WHERE p.`brand_id` = b.`id`
-AND p.`product_id` = pi.`product_id`
-AND pi.`class`='primary'")->result_array();
+AND p.`product_id` = pimg.`product_id`
+AND pimg.`class`='primary'
+")->result_array();
     }
     public function getByIdAjax($id)
     {
@@ -192,6 +193,7 @@ WHERE p.`brand_id` = b.`id`
 AND p.`product_id` = pi.`product_id`
 $i AND pi.`class`='primary'")->result_array();
     }
+
 
     public function featured_products()
     {
@@ -243,7 +245,13 @@ AND pi.class= 'primary' AND p.`featured` = 'ok' LIMIT 10")->result_array();
             return $return;
         }
     }
+    public function insert_data($table,$data){
+        $this->db->insert($table,$data);
+        return true;
+    }
 
 }
+
+
 
 

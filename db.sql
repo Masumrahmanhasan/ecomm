@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.5 (64 bit)
-MySQL - 5.7.14 : Database - new_ecommerce
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.5.46-0ubuntu0.14.04.2 : Database - new_ecommerce
 *********************************************************************
 */
 
@@ -41,7 +41,7 @@ CREATE TABLE `brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   `sub_cat_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -58,7 +58,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `icon` varchar(50) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   `digital` varchar(10) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -80,7 +80,7 @@ CREATE TABLE `company_information` (
   `address` text NOT NULL,
   `website` varchar(100) NOT NULL,
   `logo` varchar(100) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -106,7 +106,7 @@ CREATE TABLE `customer` (
   `city` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
   `zip_code` varchar(30) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   `status` enum('Pending','Approved') NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
@@ -211,7 +211,15 @@ CREATE TABLE `product` (
 
 /*Data for the table `product` */
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+insert  into `product`(`product_id`,`product_name`,`description`,`cat_id`,`sub_cat_id`,`brand_id`,`sale_price`,`purchase_price`,`discount`,`date_of_added`,`date_of_updated`,`tags`,`featured`,`deal`,`status`,`user_id`,`views`,`download`,`num_of_imgs`,`current_stock`,`tax`,`tax_type`,`discount_type`,`shipping_cost`,`requirements`,`product_file`,`color`,`size`,`ad_field_names`,`ad_field_values`) values (1,'imran','aknskanskansnan\r\naskanskanskanlks',1,1,1,120.00,130.00,2.00,'2018-03-15','2018-03-15','computer','ok','0','ok',NULL,NULL,NULL,'2',36,'1','percent','percent','0','[]',NULL,'#ccc,#000,#ffffff','S,M',NULL,NULL),(2,'Kifayat','asasaa',1,1,1,120.00,140.00,2.00,'2018-03-16','2018-03-16','asd','0','0','0',NULL,NULL,NULL,'2',35,'1','percent','percent','0','[]',NULL,'#000,#333','S,M',NULL,NULL),(3,'asad','asaa',1,1,1,1.00,1.00,1.00,'2018-03-16','2018-03-16','mm','no','0','ok',NULL,NULL,NULL,'2',12,'11','percent','percent','0','[]',NULL,'#ccc,#ccc,#ccc','S,M,L',NULL,NULL),(4,'HUSH SHOES','asasa',2,5,8,120.00,190.00,0.00,'2018-03-18','2018-03-18','asdf','no',NULL,'ok',NULL,NULL,NULL,'2',NULL,'0','percent','percent','0','[]',NULL,'#000,#ccc','S,M',NULL,NULL),(5,'imran','hghgh',1,1,1,90.00,120.00,0.00,'2018-03-18','2018-03-18','m','no',NULL,'ok',NULL,NULL,NULL,'1',NULL,'0','percent','percent','0','[]',NULL,'#ccc','S',NULL,NULL);
+=======
 insert  into `product`(`product_id`,`product_name`,`description`,`cat_id`,`sub_cat_id`,`brand_id`,`sale_price`,`purchase_price`,`discount`,`date_of_added`,`date_of_updated`,`tags`,`featured`,`deal`,`status`,`user_id`,`views`,`download`,`num_of_imgs`,`current_stock`,`tax`,`tax_type`,`discount_type`,`shipping_cost`,`requirements`,`product_file`,`color`,`size`,`ad_field_names`,`ad_field_values`) values (1,'imran','aknskanskansnan\r\naskanskanskanlks',1,1,1,120.00,130.00,2.00,'2018-03-15','2018-03-15','computer','ok','ok','ok',NULL,NULL,NULL,'2',3,'1','percent','percent','0','[]',NULL,'#ccc,#000,#ffffff','S,M',NULL,NULL),(2,'Kifayat','asasaa',1,1,1,120.00,140.00,2.00,'2018-03-16','2018-03-16','asd','0','0','0',NULL,NULL,NULL,'2',10,'1','percent','percent','0','[]',NULL,'#000,#333','S,M',NULL,NULL),(3,'asad','asaa',1,1,1,1.00,1.00,1.00,'2018-03-16','2018-03-16','mm','no','0','ok',NULL,NULL,NULL,'2',12,'11','percent','percent','0','[]',NULL,'#ccc,#ccc,#ccc','S,M,L',NULL,NULL),(4,'HUSH SHOES','asasa',2,5,8,120.00,190.00,0.00,'2018-03-18','2018-03-18','asdf','no',NULL,'ok',NULL,NULL,NULL,'2',NULL,'0','percent','percent','0','[]',NULL,'#000,#ccc','S,M',NULL,NULL),(5,'imran','hghgh',1,1,1,90.00,120.00,0.00,'2018-03-18','2018-03-18','m','no',NULL,'ok',NULL,NULL,NULL,'1',NULL,'0','percent','percent','0','[]',NULL,'#ccc','S',NULL,NULL);
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
+=======
+insert  into `product`(`product_id`,`product_name`,`description`,`cat_id`,`sub_cat_id`,`brand_id`,`sale_price`,`purchase_price`,`discount`,`date_of_added`,`date_of_updated`,`tags`,`featured`,`deal`,`status`,`user_id`,`views`,`download`,`num_of_imgs`,`current_stock`,`tax`,`tax_type`,`discount_type`,`shipping_cost`,`requirements`,`product_file`,`color`,`size`,`ad_field_names`,`ad_field_values`) values (1,'imran','aknskanskansnan\r\naskanskanskanlks',1,1,1,120.00,130.00,2.00,'2018-03-15','2018-03-15','computer','ok','ok','ok',NULL,NULL,NULL,'2',3,'1','percent','percent','0','[]',NULL,'#ccc,#000,#ffffff','S,M',NULL,NULL),(2,'Kifayat','asasaa',1,1,1,120.00,140.00,2.00,'2018-03-16','2018-03-16','asd','0','0','0',NULL,NULL,NULL,'2',10,'1','percent','percent','0','[]',NULL,'#000,#333','S,M',NULL,NULL),(3,'asad','asaa',1,1,1,1.00,1.00,1.00,'2018-03-16','2018-03-16','mm','no','0','ok',NULL,NULL,NULL,'2',12,'11','percent','percent','0','[]',NULL,'#ccc,#ccc,#ccc','S,M,L',NULL,NULL),(4,'HUSH SHOES','asasa',2,5,8,120.00,190.00,0.00,'2018-03-18','2018-03-18','asdf','no',NULL,'ok',NULL,NULL,NULL,'2',NULL,'0','percent','percent','0','[]',NULL,'#000,#ccc','S,M',NULL,NULL),(5,'imran','hghgh',1,1,1,90.00,120.00,0.00,'2018-03-18','2018-03-18','m','no',NULL,'ok',NULL,NULL,NULL,'1',NULL,'0','percent','percent','0','[]',NULL,'#ccc','S',NULL,NULL);
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
 
 /*Table structure for table `product_image` */
 
@@ -228,6 +236,31 @@ CREATE TABLE `product_image` (
 /*Data for the table `product_image` */
 
 insert  into `product_image`(`p_img_id`,`image_name`,`product_id`,`class`) values (1,'uploads/product_image/product_1_5.jpg',1,'primary'),(2,'uploads/product_image/product_1_6.jpg',1,NULL),(3,'uploads/product_image/product_2_1.jpg',2,'primary'),(4,'uploads/product_image/product_2_2.jpg',2,NULL),(5,'uploads/product_image/product_3_1.jpg',3,'primary'),(6,'uploads/product_image/product_3_2.jpg',3,NULL),(9,'uploads/product_image/product_4_1.jpg',4,'primary'),(10,'uploads/product_image/product_4_2.jpg',4,NULL),(11,'uploads/product_image/product_5_1.jpg',5,'primary');
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+/*Table structure for table `product_review` */
+
+DROP TABLE IF EXISTS `product_review`;
+
+CREATE TABLE `product_review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `stars` int(11) DEFAULT NULL,
+  `review` longtext,
+  `name` varchar(50) DEFAULT NULL,
+  `email` varbinary(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `product_review` */
+
+insert  into `product_review`(`id`,`customer_id`,`product_id`,`stars`,`review`,`name`,`email`) values (1,2,3,5,'Tail sed sausage magna quis commodo swine. Aliquip strip steak esse ex in ham hock\r\n                                    fugiat in. Labore velit pork belly eiusmod ut shank doner capicola consectetur\r\n                                    landjaeger fugiat excepteur short loin. Pork belly laboris mollit in leberkas qui.\r\n                                    Pariatur swine aliqua pork chop venison veniam. Venison sed cow short loin bresaola\r\n                                    shoulder cupidatat capicola drumstick dolore magna shankle.','sssssssss','aneeskhan@yopmail.com'),(2,2,4,5,'aaaaaaaaaa','sasa','aneeskhan@yopmail.com');
+=======
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
+=======
+>>>>>>> 9fc9be64df9dd60536cefd4e7e4d3993fea6af96
 
 /*Table structure for table `slider` */
 
@@ -241,7 +274,7 @@ CREATE TABLE `slider` (
   `quote` text NOT NULL,
   `link` text NOT NULL,
   `status` enum('Disable','Enable') NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
@@ -259,7 +292,7 @@ CREATE TABLE `social_links` (
   `twitter` varchar(100) NOT NULL,
   `google_plus` varchar(100) NOT NULL,
   `linkedin` varchar(100) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -278,11 +311,11 @@ CREATE TABLE `stock` (
   `sales_rate` float(11,2) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`stock_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `stock` */
 
-insert  into `stock`(`stock_id`,`product_id`,`purchase_rate`,`sales_rate`,`quantity`) values (1,1,1560.00,NULL,12),(2,2,1400.00,NULL,10),(3,3,12.00,NULL,12);
+insert  into `stock`(`stock_id`,`product_id`,`purchase_rate`,`sales_rate`,`quantity`) values (1,1,1560.00,NULL,12),(2,2,1400.00,NULL,10),(3,3,12.00,NULL,12),(4,2,140.00,NULL,1),(5,1,260.00,NULL,2);
 
 /*Table structure for table `sub_category` */
 
@@ -292,7 +325,7 @@ CREATE TABLE `sub_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -339,7 +372,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`password`,`role`,`hash`,`status`,`ip`,`browser`,`operating_system`,`device`,`location`,`date_time`,`image`) values (29,'saadi','cyberasad09@gmail.com','fca7eb1a8150b15149a6fad6a76355bc',1,'','approved','::1','Chrome','Windows 10','Computer','','2017-08-22 00:32:35','avatar1.png'),(30,'adnan','adnanrafi784@gmail.com','5f92666713758deba6e9880d8c0fd73c',1,'e8555537f6031e44c5c6937a3d62956a','approved','127.0.0.1','Chrome','Windows 7','Computer','','2017-08-27 12:40:28','');
+insert  into `users`(`id`,`name`,`email`,`password`,`role`,`hash`,`status`,`ip`,`browser`,`operating_system`,`device`,`location`,`date_time`,`image`) values (29,'saadi','cyberasad09@gmail.com','fca7eb1a8150b15149a6fad6a76355bc',1,'','approved','192.168.33.1','Firefox','Windows 10','Computer','','2017-08-22 00:32:35','avatar1.png'),(30,'adnan','adnanrafi784@gmail.com','5f92666713758deba6e9880d8c0fd73c',1,'e8555537f6031e44c5c6937a3d62956a','approved','127.0.0.1','Chrome','Windows 7','Computer','','2017-08-27 12:40:28','');
 
 /*Table structure for table `vendor` */
 
@@ -356,7 +389,7 @@ CREATE TABLE `vendor` (
   `address_1` text NOT NULL,
   `address_2` text NOT NULL,
   `detail` text NOT NULL,
-  `added_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `added_at` datetime NOT NULL,
   `approved_at` datetime DEFAULT NULL,
   `banned_at` datetime DEFAULT NULL,
   `status` enum('Pending','Approved','banned') NOT NULL,
