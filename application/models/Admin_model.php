@@ -481,7 +481,8 @@ class Admin_model extends CI_Model
                 return base_url() . 'uploads/' . $type . '_image/default.jpg';
             }
 
-        } else if ($multi == 'multi') {
+        } 
+        else if ($multi == 'multi') {
             $num = $this->Admin_model->get_type_name_by_id($type, $id, 'num_of_imgs');
             //$num = 2;
             $i = 0;
@@ -748,46 +749,51 @@ class Admin_model extends CI_Model
 
     function file_dlt($type, $id, $ext = '.jpg', $multi = '', $m_sin = '')
     {
+        //echo $multi.$id;exit;
         if ($multi == '') {
-            if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . $ext)) {
-                unlink("uploads/" . $type . "_image/" . $type . "_" . $id . $ext);
+
+            $i_id = $this->db->query("select * from product_image WHERE p_img_id = '$id'")->row_array();
+           //$this->db->last_query();
+            $a = $i_id['image_name'];
+
+            if (file_exists($a)) {
+                unlink($a);
             }
-            if (file_exists("uploads/" . $type . "_image/" . $type . "_" . $id . "_thumb" . $ext)) {
-                unlink("uploads/" . $type . "_image/" . $type . "_" . $id . "_thumb" . $ext);
+            $withoutExt = explode(".",$a);
+            //print_r($withoutExt);
+            //exit;
+            if (file_exists($withoutExt[0] . "_thumb" . $ext)) {
+                //print_r($withoutExt[0]."_thumb".$ext);
+                unlink($withoutExt[0] . "_thumb" . $ext);
             }
 
-        } else if ($multi == 'multi') {
-            $num = $this->Admin_model->get_type_name_by_id($type, $id, 'num_of_imgs');
-            if ($m_sin == '') {
-                $i = 0;
-                $p = 0;
-                while ($p < $num) {
-                    $i++;
-                    if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $i . $ext)) {
-                        unlink("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $i . $ext);
-                        $p++;
-                        $data['num_of_imgs'] = $num - 1;
-                        $this->db->where($type . '_id', $id);
-                        $this->db->update($type, $data);
-                    }
+        }
 
-                    if (file_exists("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $i . "_thumb" . $ext)) {
-                        unlink("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $i . "_thumb" . $ext);
-                    }
-                    if ($i > 50) {
-                        break;
-                    }
+    }
+
+    // FILE_UPLOAD
+    function file_up($name, $type, $id, $multi = '', $no_thumb = '', $ext = '.jpg')
+    {
+        if ($multi == '') {
+            move_uploaded_file($_FILES[$name]['tmp_name'], 'uploads/' . $type . '_image/' . $type . '_' . $id . $ext);
+            if ($no_thumb == '') {
+                $this->Admin_model->img_thumb($type, $id, $ext);
+            }
+        } elseif ($multi == 'multi') {
+            $ib = 1;
+            foreach ($_FILES[$name]['name'] as $i => $row) {
+                $ib = $this->file_exist_ret($type, $id, $ib);
+                move_uploaded_file($_FILES[$name]['tmp_name'][$i], 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext);
+                $image = 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext;
+                //$image = $_FILES[$name]['tmp_name'][$i], 'uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $ib . $ext;
+                $images_data = array(
+                    'image_name'=>$image,
+                    'product_id'=>$id
+                );
+                $this->db->insert('product_image',$images_data);
+                if ($no_thumb == '') {
+                    $this->Admin_model->img_thumb($type, $id . '_' . $ib, $ext);
                 }
-            } else {
-                if (file_exists('uploads/' . $type . '_image/' . $type . '_' . $id . '_' . $m_sin . $ext)) {
-                    unlink("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $m_sin . $ext);
-                }
-                if (file_exists("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $m_sin . "_thumb" . $ext)) {
-                    unlink("uploads/" . $type . "_image/" . $type . "_" . $id . '_' . $m_sin . "_thumb" . $ext);
-                }
-                $data['num_of_imgs'] = $num - 1;
-                $this->db->where($type . '_id', $id);
-                $this->db->update($type, $data);
             }
         }
     }

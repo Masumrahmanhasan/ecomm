@@ -1402,12 +1402,10 @@ $this->db->update('product', $da); */
 FROM
   product AS p,
   brands AS b,
-  product_image AS PI,
   category AS c,
   sub_category AS sc
 WHERE p.`brand_id` = b.`id` 
-  AND pi.product_id = p.product_id 
-  AND pi.class = 'primary' 
+ 
   AND p.`product_id` = $para2 
   AND p.`cat_id` = c.`id`
   AND p.`sub_cat_id` = sc.`id`")->result_array();
@@ -1512,7 +1510,7 @@ WHERE p.`brand_id` = b.`id`
             $data['size'] = $s;
             $p_id = $this->input->post('product_id');
             //print_r($data);exit;
-            //$this->Admin_model->file_upUpdate("images", "product", $p_id, 'multi');
+            $this->Admin_model->file_up("images", "product", $p_id, 'multi');
 
             $this->db->where('product_id', $p_id);
             $this->db->update('product', $data);
@@ -1529,8 +1527,11 @@ WHERE p.`brand_id` = b.`id`
 
     function dlt_img($para2)
     {
-        $a = explode('_', $para2);
-        $this->Admin_model->file_dlt('product', $a[0], '.jpg', 'multi', $a[1]);
+        //echo $para2;exit;
+        //$a = explode('_', $para2);
+        $this->Admin_model->file_dlt('product', $para2, '.jpg', '', $a='');
+        $this->db->delete('product_image',array('p_img_id'=>$para2));
+
 
 
     }

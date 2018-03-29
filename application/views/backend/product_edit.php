@@ -2,6 +2,7 @@
     <div class="layout-content-body">
         <?php
         foreach ($product_data as $row) {
+            //print_r($row);exit;
             ?>
             <div class="row">
                 <div style="left: 50%; transform: translateX(-50%);" class="col-md-12">
@@ -114,6 +115,47 @@
                                                                placeholder="<?php echo translate('tags'); ?>"
                                                                value="<?php echo $row['tags']; ?>" class="form-control">
                                                     </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="username" class="col-sm-3 control-label" style="width: 20%;" for="form-control-17">Images</label>
+                                                    <div class="col-sm-6">
+                                    <span
+                                        class="pull-left btn btn-default btn-file"> <?php echo translate('choose_file'); ?>
+                                        <input type="file" multiple name="images[]" onchange="preview(this);"
+                                               id="demo-hor-inputpass" class="form-control">
+                                    </span>
+                                                        <br><br>
+                                                        <span id="previewImg"></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <?php
+                                                        $p_id = $row['product_id'];
+                                                        $images = $this->db->query("select * from product_image where product_id = '$p_id'")->result_array(); //print_r($images);
+                                                        //print_r($images);exit;
+                                                        //error_reporting(E_ALL);
+                                                            foreach ($images as $row1) {
+                                                               //print_r($row1);exit;
+                                                                ?>
+                                                                <div class="delete-div-wrap" style="position: relative;
+                                                                                        display: inline-block;
+                                                                                        border: 2px #EAEAEA solid;
+                                                                                        font-size: 0;
+                                                                                        border-radius: 4px;
+                                                                                        margin: 10px;
+                                                                                        transition: all .6s ease-in-out;">
+                                                                    <span class="close">&times;</span>
+
+                                                                    <div class="inner-div">
+                                                                        <img class="img-responsive" width="100" src="<?php echo base_url().$row1['image_name']; ?>"
+                                                                             data-id="<?php echo $row1['p_img_id'];  ?>" alt="User_Image">
+                                                                    </div>
+                                                                </div>
+                                                                <?php
+
+                                                        }
+                                                        ?>
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="form-group">
@@ -689,7 +731,7 @@
         var pid = $(this).closest('.delete-div-wrap').find('img').data('id');
         var here = $(this);
         msg = 'Really want to delete this Image?';
-
+                                alert(pid);
         $.ajax({
             url: base_url + 'index.php/Admin/dlt_img/' + pid,
             cache: false,
