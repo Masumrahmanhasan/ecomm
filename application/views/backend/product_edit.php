@@ -90,23 +90,24 @@
                                             <span id="previewImg"></span>
                                         </div>
                                         <div class="col-sm-6">
-                                            <?php
-                                            $images = $this->Admin_model->file_view('product', $row['product_id'], '', '', 'thumb', 'src', 'multi', 'all');
+                                            <?php 
+                                            $images = $this->Admin_model->file_view('product', $row['product_id'], '', '', 'thumb', 'src', 'multi', 'all'); //print_r($images);
+                                            //print_r($images);exit;   
                                             if ($images) {
                                                 foreach ($images as $row1) {
                                                     $a = explode('.', $row1);
                                                     $a = $a[(count($a) - 2)];
                                                     $a = explode('_', $a);
                                                     $p = $a[(count($a) - 2)];
-                                                    $i = $a[(count($a) - 3)];
+                                                    $i = $a[(count($a) - 3)];                                                 
                                                     ?>
                                                     <div class="delete-div-wrap" style="position: relative;
-    display: inline-block;
-    border: 2px #EAEAEA solid;
-    font-size: 0;
-    border-radius: 4px;
-    margin: 10px;
-    transition: all .6s ease-in-out;">
+                                                                                        display: inline-block;
+                                                                                        border: 2px #EAEAEA solid;
+                                                                                        font-size: 0;
+                                                                                        border-radius: 4px;
+                                                                                        margin: 10px;
+                                                                                        transition: all .6s ease-in-out;">
                                                         <span class="close">&times;</span>
 
                                                         <div class="inner-div">
@@ -219,7 +220,7 @@
                                         <h4 class="text-thin text-center"><?php echo translate('customer_choice_options'); ?></h4>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                       <!--  <div class="col-lg-6">
                                             <div class="form-group btm_border">
                                                 <label class="col-sm-2 control-label" for="demo-hor-14"><?php echo translate('color'); ?></label>
                                                 <div class="col-sm-6"  id="more_colors">
@@ -277,9 +278,46 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <td>Title</td>
+                                                    <td>Sale Price</td>
+                                                    <td>Purchase Price</td>
+                                                    <td>Discount</td>
+                                                    <td>Quanties</td>
+                                                    <td>Date Updated</td>
+                                                    <td>Status</td>
+                                                    <td>Tax</td>
+                                                    <td>Tax Type</td>
+                                                    <td>Color</td>
+                                                    <td>Size</td>
+                                                    <td>Shipping Cost</td>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <?php //var_dump($product_options);
+                                            for($i=0; $i<count($product_options);$i++){?>
+                                                <tr id="<?=$product_options[$i]['options_id'];?>">
+                                                    <td id="name_td"><?=$product_options[$i]['product_name'];?></td>
+                                                    <td id="sale_price_td"><?=$product_options[$i]['sale_price'];?></td>
+                                                    <td id="purchase_price_td"><?=$product_options[$i]['purchase_price'];?></td>
+                                                    <td id="discount_td"><?=$product_options[$i]['discount'];?></td>
+                                                    <td id="quantity_td"><?=$product_options[$i]['current_stock'];?></td>
+                                                    <td id="date_updated_td"><?=$product_options[$i]['date_of_updated'];?></td>
+                                                    <td id="status_td"><?=$product_options[$i]['status'];?></td>
+                                                    <td id="tax_td"><?=$product_options[$i]['tax'];?></td>
+                                                    <td id="tax_type_td"><?=$product_options[$i]['tax_type'];?></td>
+                                                    <td id="color_td"><?=$product_options[$i]['color'];?></td>
+                                                    <td id="size_td"><?=$product_options[$i]['size'];?></td>
+                                                    <td id="shipping_td"><?=$product_options[$i]['shipping_cost'];?></td>
+                                                    <td><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="edit_option(<?=$product_options[$i]['options_id'];?>)" class="btn btn-info"><i value="" class="edit-option icon icon-edit"></i></a></td>
+                                                </tr>
+                                            <?php }?>
+                                        </table>
                                     </div>
-
-
 
 
                                     <div id="more_additional_options"></div>
@@ -313,6 +351,16 @@
         <?php } ?>
     </div>
 </div>
+<!-- Modal for updating the option -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content edit-modal">
+        
+    </div>
+  </div>
+</div>
+
+<!-- end modal -->
 <script type="text/javascript">
     $(document).ready(function () {
         $("#product_add").on('submit', (function (e) {
@@ -698,5 +746,90 @@
         $("form").submit(function(e){
             event.preventDefault();
         });
+    });
+    function edit_option(id){ 
+        $("#msg").html('<div class="loading"></div>');
+        $.ajax({
+                url: '<?php echo site_url("Admin/stock/edit_option") ?>',
+                type: "POST",
+                data:{id:id},
+                success: function (data) {
+                    $('.edit-modal').html(data);
+                    $('.loading').hide();
+                    }
+                });
+
+    }
+    $('body').on('click','.option_update',function(e){
+        e.preventDefault();
+           // $("#msg").html('<div class="loading"></div>');
+           var shipping, id,name,sale_price,purchase_price,discount,status,tax,tax_type,quantity,size,color;
+           name = $('#product_name').val();
+           sale_price = $('#sale_price').val();
+           purchase_price = $('#purchase_price').val();
+           discount = $('#discount').val();
+           status = $('#status').val();
+           tax = $('#tax').val();
+           tax_type = $('#tax_type').val();
+           quantity = $('#quantity').val();
+           size = $('#size').val();
+           color = $('#color').val();
+           id = $('#id').val(); 
+           shipping = $('#shipping').val();
+           var data = {
+               id:id,
+               name : name,
+               sale_price: sale_price,
+               purchase_price:purchase_price,
+               discount:discount,
+               status:status,
+               tax:tax,
+               tax_type:tax_type,
+               quantity:quantity,
+               size:size,
+               color:color,
+               shipping:shipping
+           }; 
+//           $.each( data, function( key, value ) {
+//                alert( key + ": " + value );
+//              });
+            $('.modal').modal('hide'); 
+            $("#msg").html('<div class="loading"></div>');
+            $.ajax({
+                    url: '<?php echo site_url("Admin/stock/update_option_save") ?>',
+                    type: "POST",
+                    data: data,
+                    success: function (resp) { 
+                        if(resp == '1'){ 
+                               $('#'+id+'').css('background-color','#38c8dd');
+                               $('#'+id+'>#name_td').text(data.name);
+                               $('#'+id+'>#sale_price_td').text(data.sale_price); 
+                               $('#'+id+'>#purchase_price_td').text(data.purchase_price); 
+                               $('#'+id+'>#discount_td').text(data.discount); 
+                               $('#'+id+'>#quantity_td').text(data.quantity); 
+                               $('#'+id+'>#status_td').text(data.status); 
+                               $('#'+id+'>#tax_td').text(data.tax); 
+                               $('#'+id+'>#tax_type_td').text(data.tax_type); 
+                               $('#'+id+'>#shipping_td').text(data.shipping); 
+                               $('#'+id+'>#size_td').text(data.size); 
+                               $('#'+id+'>#color_td').text(data.color); 
+//                                       $.each( data, function( key, value ) {
+//                                            alert( key + ": " + value );
+//                                          });
+                            $('.loading').hide();
+                            toastr.success("Item Updated Successfully");
+                            setInterval(function() {
+                                 $('tr#'+id+'').css('background-color','white');
+                             }, 1000);
+                        }else{
+                            $('.loading').hide();
+                             toastr.error("Item Updating Faild, Please Try Again");
+                        }
+                    },
+                    error: function (e) {
+                        toaster.error('something really bad happend');
+                    }
+                    });
+
     });
 </script>

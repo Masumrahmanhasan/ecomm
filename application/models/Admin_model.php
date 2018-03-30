@@ -91,8 +91,11 @@ class Admin_model extends CI_Model
     ///////////////////////////////////////
 
     /*==== FUNCTION GET ALL DATA ====*/
-    public function getAll($table)
+    public function getAll($table,$where=NULL)
     {
+        if($where != NULL):
+            $this->db->where($where);
+        endif;
         return $this->db->select('*')->from($table)->get()->result_array();
     }
 

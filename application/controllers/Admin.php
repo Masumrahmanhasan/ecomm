@@ -1086,7 +1086,7 @@ class Admin extends CI_Controller
             $data['theme'] = $this->Admin_model->getActiveTheme();
             $data['cat'] = $this->Admin_model->getAll('category');
             $data['company_info'] = $this->Admin_model->get_company_info();
-            $data['product'] = $this->Admin_model->getAll('product');
+            $data['product'] = $this->Admin_model->getAll('product',array('delete' => 0));
             $data['title'] = $data['company_info']['name'] . " | Manage Categories";
             $this->load->view('backend/static/head', $data);
             $this->load->view('backend/static/header');
@@ -1171,7 +1171,7 @@ class Admin extends CI_Controller
             $data['sub_cat'] = $this->Admin_model->getAll('sub_category');
             $data['brand'] = $this->Admin_model->getAll('brands');
             $data['company_info'] = $this->Admin_model->get_company_info();
-            $data['title'] = $data['company_info']['name'] . " | Add Category";
+            $data['title'] = $data['company_info']['name'] . " | Add Category"; 
             $this->load->view('backend/static/head', $data);
             $this->load->view('backend/static/header');
             $this->load->view('backend/static/sidebar1');
@@ -1275,11 +1275,13 @@ class Admin extends CI_Controller
 
                     //$data['added_by'] = json_encode(array('type' => 'admin', 'id' => $this->session->userdata('admin_id')));
                     //echo "<pre>";
-                    //print_r($data);exit;
+                    // print_r($data);exit;
+
                     $this->db->insert('product', $data);
                     $id = $this->db->insert_id();
-
-
+                    // $query = $this->db->get('product')->row();
+                    // $id = $query->product_id;
+                   
                     //$this->benchmark->mark_time();
 
                     $this->Admin_model->file_up("images", "product", $id, 'multi');
@@ -1316,6 +1318,37 @@ move_uploaded_file($_FILES['product_file']['tmp_name'], 'uploads/file_products/'
 $this->db->where('product_id', $id);
 $this->db->update('product', $da); */
                     //$this->Admin_model->set_category_data(0);
+                    $product_id = $this->db->query('SELECT MAX(product_id) AS p_id FROM product')->row()->p_id; 
+
+                     foreach ($this->input->post('color') as $color) {
+                         foreach ($this->input->post('size') as $size) {
+                            $id = $this->db->insert_id();
+                            $option_data['product_name'] = $this->input->post('title')."_".ucfirst($color)."_".ucfirst($size);
+                            $option_data['cat_id'] = $this->input->post('category');
+                            $option_data['product_id'] = $product_id;
+                            $option_data['description'] = $this->input->post('description');
+                            $option_data['sub_cat_id'] = $this->input->post('sub_category');
+                            $option_data['brand_id'] = $this->input->post('brand');
+                            $option_data['sale_price'] = $this->input->post('sale_price');
+                            $option_data['purchase_price'] = $this->input->post('purchase_price');
+                            $option_data['date_of_added'] = date("Y-m-d");
+                            $option_data['featured'] = 'no';
+                            $option_data['status'] = 'ok';
+                            $option_data['date_of_updated'] = date('Y-m-d');
+                            $option_data['tax'] = $this->input->post('tax');
+                            $option_data['discount'] = $this->input->post('discount');
+                            $option_data['discount_type'] = $this->input->post('discount_type');
+                            $option_data['tax_type'] = $this->input->post('tax_type');
+                            $option_data['shipping_cost'] = 0;
+                            $option_data['tags'] = $this->input->post('tag');
+                            $option_data['num_of_imgs'] = $num_of_imgs;
+                            $option_data['color'] = ucfirst($color);
+                            $option_data['size'] =  ucfirst($size);
+                            
+                            $this->db->insert('product_options', $option_data); 
+                         }
+                     }
+                     
                     echo json_encode((["msg_type" => "success", "message" => "Product Added Successfully"]));
                 }
             }
@@ -1366,7 +1399,7 @@ $this->db->update('product', $da); */
             $page_data['company_info'] = $this->Admin_model->get_company_info();
             $page_data['title'] = $page_data['company_info']['name'] . " | Add Category";
             $page_data['menu'] = $this->Admin_model->getMenuItems('admin_menu');
-            $page_data['theme'] = $this->Admin_model->getActiveTheme();
+            $page_data['theme'] = $this->Admin_model->getActiveTheme(); 
             $this->load->view('backend/static/head', $page_data);
             $this->load->view('backend/static/header');
             $this->load->view('backend/static/sidebar1');
@@ -1394,6 +1427,10 @@ $this->db->update('product', $da); */
             $page_data['product_data'] = $this->db->get_where('product', array(
                 'product_id' => $para2
             ))->result_array();
+            $page_data['product_options'] = $this->db->get_where('product_options', array(
+                'product_id' => $para2
+            ))->result_array(); 
+            // echo "<pre>";print_r($page_data); die;
             $page_data['company_info'] = $this->Admin_model->get_company_info();
             $page_data['title'] = $page_data['company_info']['name'] . " | Add Category";
             $page_data['menu'] = $this->Admin_model->getMenuItems('admin_menu');
@@ -1465,10 +1502,10 @@ $this->db->update('product', $da); */
             }
             $num                        = $this->Admin_model->get_type_name_by_id('product', $para2, 'num_of_imgs');
             $download                   = $this->Admin_model->get_type_name_by_id('product', $para2, 'download');
-            $color = $this->input->post('color');
-            $c = implode(",", $color);
-            $size = $this->input->post('size');
-            $s = implode(",", $size);
+//            $color = $this->input->post('color');
+//            $c = implode(",", $color);
+//            $size = $this->input->post('size');
+//            $s = implode(",", $size);
             $data['product_name'] = $this->input->post('title');
             $data['cat_id'] = $this->input->post('category');
             $data['description'] = $this->input->post('description');
@@ -1488,8 +1525,8 @@ $this->db->update('product', $da); */
             $data['shipping_cost'] = 0;
             $data['tags'] = $this->input->post('tag');
             $data['num_of_imgs'] = $num_of_imgs;
-            $data['color'] = $c;
-            $data['size'] = $s;
+//            $data['color'] = $c;
+//            $data['size'] = $s;
             $p_id = $this->input->post('product_id');
              //print_r($data);exit;
             $this->Admin_model->file_up("images", "product", $para2, 'multi');
@@ -1502,6 +1539,33 @@ $this->db->update('product', $da); */
             echo json_encode((["msg_type" => "success", "message" => "Product Updated Successfully"]));
 
             //redirect(base_url() . 'Admin/all_product');
+        }else if($para1 == "edit_option") {
+            $id = $_POST['id'];
+            $data['option']= $this->db->get_where('product_options', array(
+                'options_id' => $id
+            ))->result(); 
+            $this->load->view('backend/static/edit_option',$data);
+            
+        }else if ($para1 == "update_option_save") {
+            $data = array(
+                'product_name' => $this->input->post('name'),
+                'sale_price' => $this->input->post('sale_price'),
+                'discount' => $this->input->post('purchase_price'),
+                'date_of_updated' => date('Y-m-d'),
+                'status' => $this->input->post('status'),
+                'tax' => $this->input->post('tax'),
+                'color' => $this->input->post('color'),
+                'size' => $this->input->post('size'),
+                'current_stock' => $this->input->post('quantity'),
+                'shipping_cost' => $this->input->post('shipping')
+            );          
+            $where = array('options_id' => $this->input->post('id'));
+            $this->db->where($where);
+            $this->db->update('product_options', $data); 
+            echo 1;
+//            echo json_encode(array("status" => 1));
+//            echo json_encode($data);
+           
         }
 
         else {
@@ -1514,6 +1578,12 @@ $this->db->update('product', $da); */
             $this->Admin_model->file_dlt('product', $a[0], '.jpg', 'multi', $a[1]);
 
 
+    }
+    function soft_delete(){
+        $id = $this->input->post('id');
+        $this->db->where('product_id',$id);
+        $this->db->update('product',array('delete'  => 1 ));
+        echo 1;
     }
 
 }

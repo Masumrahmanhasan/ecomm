@@ -96,9 +96,9 @@
                                             <i class="entypo-bookmarks"></i>
                                             Edit
                                         </a>
-                                        <a onclick="delete_confirm('<?= $product[$i]['product_id']; ?>','really_want_to_delete_this?')"
+                                        <a onclick="delete_confirm('<?= $product[$i]['product_id']; ?>','Are you Sure want to delete this Product?')"
                                            class="btn btn-danger btn-sm btn-labeled fa fa-trash" data-toggle="tooltip"
-                                           data-original-title="Delete" data-container="body">
+                                           data-original-title="Delete" data-container="body" id="<?= $product[$i]['product_id']; ?>">
                                             delete
                                         </a>
                                     </td>
@@ -139,6 +139,25 @@
         src="<?= base_url() ?>backend_assets/<?= $theme ?>/sweetalert/sweetalert2.all.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>backend_assets/<?= $theme ?>/sweetalert/core.js"></script>
 <script>
+    function delete_confirm(id,msg){
+        var r = confirm(msg);
+        if(r == true){
+        $.ajax({
+            url: "<?=base_url('Admin/soft_delete')?>", 
+            type: 'POST', 
+            data: {id:id},
+            success: function (response) {
+                if(response == 1){
+                    $('#'+id+'').parent().parent().remove(); 
+                     toastr.success('Product Deleted Successfully');
+                }else{
+                    toastr.error('Something really bad happend');
+                }
+            }
+        });
+           return false;
+        }
+    }
     function validate(a) {
         var id = a.value;
         swal({
