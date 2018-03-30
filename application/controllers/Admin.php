@@ -1427,7 +1427,7 @@ $this->db->update('product', $da); */
             //recache();
         }
         else if ($para1 == 'edit') {
-<<<<<<< HEAD
+
             $page_data['product_data'] = $this->db->get_where('product', array(
                 'product_id' => $para2
             ))->result_array();
@@ -1435,7 +1435,7 @@ $this->db->update('product', $da); */
                 'product_id' => $para2
             ))->result_array(); 
             // echo "<pre>";print_r($page_data); die;
-=======
+
             $page_data['product_data'] = $this->db->query("SELECT 
   p.*,
   (c.`name`) AS cat_name,
@@ -1451,14 +1451,14 @@ WHERE p.`brand_id` = b.`id`
   AND p.`product_id` = $para2 
   AND p.`cat_id` = c.`id`
   AND p.`sub_cat_id` = sc.`id`")->result_array();
-            //print_r("");
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+            
+
             $page_data['company_info'] = $this->Admin_model->get_company_info();
             $page_data['category'] = $this->Admin_model->getAll('category');
             $page_data['sub_category'] = $this->Admin_model->getAll('sub_category');
             $page_data['title'] = $page_data['company_info']['name'] . " | Add Category";
             $page_data['menu'] = $this->Admin_model->getMenuItems('admin_menu');
-            $page_data['theme'] = $this->Admin_model->getActiveTheme();
+            $page_data['theme'] = $this->Admin_model->getActiveTheme(); //echo "<pre>";print_r($page_data['product_data']); die;
             $this->load->view('backend/static/head', $page_data);
             $this->load->view('backend/static/header');
             $this->load->view('backend/static/sidebar1');
@@ -1523,7 +1523,7 @@ WHERE p.`brand_id` = b.`id`
                 $num_of_imgs = 0;
             } else {
                 $num_of_imgs = count($_FILES["images"]['name']);
-<<<<<<< HEAD
+
             }
             $num                        = $this->Admin_model->get_type_name_by_id('product', $para2, 'num_of_imgs');
             $download                   = $this->Admin_model->get_type_name_by_id('product', $para2, 'download');
@@ -1531,7 +1531,7 @@ WHERE p.`brand_id` = b.`id`
 //            $c = implode(",", $color);
 //            $size = $this->input->post('size');
 //            $s = implode(",", $size);
-=======
+
             }*/
             $num = $this->Admin_model->get_type_name_by_id('product', $para2, 'num_of_imgs');
             $download = $this->Admin_model->get_type_name_by_id('product', $para2, 'download');
@@ -1539,7 +1539,7 @@ WHERE p.`brand_id` = b.`id`
             $c = implode(",", $color);
             $size = $this->input->post('size');
             $s = implode(",", $size);
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+
             $data['product_name'] = $this->input->post('title');
             $data['cat_id'] = $this->input->post('category');
             $data['description'] = $this->input->post('description');
@@ -1558,15 +1558,15 @@ WHERE p.`brand_id` = b.`id`
             $data['tax_type'] = $this->input->post('tax_type');
             $data['shipping_cost'] = 0;
             $data['tags'] = $this->input->post('tag');
-<<<<<<< HEAD
+
             $data['num_of_imgs'] = $num_of_imgs;
 //            $data['color'] = $c;
 //            $data['size'] = $s;
-=======
+
             //$data['num_of_imgs'] = $num_of_imgs;
             $data['color'] = $c;
             $data['size'] = $s;
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+
             $p_id = $this->input->post('product_id');
             //print_r($data);exit;
             $this->Admin_model->file_up("images", "product", $p_id, 'multi');
@@ -1579,7 +1579,7 @@ WHERE p.`brand_id` = b.`id`
             echo json_encode((["msg_type" => "success", "message" => "Product Updated Successfully"]));
 
             //redirect(base_url() . 'Admin/all_product');
-<<<<<<< HEAD
+
         }else if($para1 == "edit_option") {
             $id = $_POST['id'];
             $data['option']= $this->db->get_where('product_options', array(
@@ -1609,10 +1609,8 @@ WHERE p.`brand_id` = b.`id`
            
         }
 
-        else {
-=======
-        } else {
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+         else {
+
             redirect(base_url() . 'Admin/all_product');
         }
     }

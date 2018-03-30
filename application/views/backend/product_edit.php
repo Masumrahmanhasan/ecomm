@@ -124,7 +124,7 @@
                                         <input type="file" multiple name="images[]" onchange="preview(this);"
                                                id="demo-hor-inputpass" class="form-control">
                                     </span>
-<<<<<<< HEAD
+
                                             <br><br>
                                             <span id="previewImg"></span>
                                         </div>
@@ -141,7 +141,7 @@
                                                     $i = $a[(count($a) - 3)];                                                 
                                                     ?>
                                                     <div class="delete-div-wrap" style="position: relative;
-=======
+
                                                         <br><br>
                                                         <span id="previewImg"></span>
                                                     </div>
@@ -155,21 +155,21 @@
                                                                //print_r($row1);exit;
                                                                 ?>
                                                                 <div class="delete-div-wrap" style="position: relative;
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+
                                                                                         display: inline-block;
                                                                                         border: 2px #EAEAEA solid;
                                                                                         font-size: 0;
                                                                                         border-radius: 4px;
                                                                                         margin: 10px;
                                                                                         transition: all .6s ease-in-out;">
-<<<<<<< HEAD
+
                                                         <span class="close">&times;</span>
 
                                                         <div class="inner-div">
                                                             <img class="img-responsive" width="100" src="<?php echo $row1; ?>"
                                                                  data-id="<?php echo $i . '_' . $p; ?>" alt="User_Image">
                                                         </div>
-=======
+
                                                                     <span class="close">&times;</span>
 
                                                                     <div class="inner-div">
@@ -178,10 +178,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <?php
-
-                                                        }
+                                                            }
+                                            }}
                                                         ?>
->>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
+
                                                     </div>
 
                                                 </div>
@@ -269,7 +269,7 @@
                                                 <span class="btn unit_set"></span>
                                             </div>
 
-<<<<<<< HEAD
+
                                     <div class="form-group btm_border">
                                         <label class="col-sm-4 control-label" for="demo-hor-10"><?php echo translate('product_discount');?></label>
                                         <div class="col-sm-4">
@@ -299,7 +299,7 @@
                                     </div>
                                     <div class="row">
                                        <!--  <div class="col-lg-6">
-=======
+
 >>>>>>> 77feb0f5cff7745f2c5b07322ca19e04544df5b9
                                             <div class="form-group btm_border">
                                                 <label class="col-sm-4 control-label"
@@ -372,16 +372,16 @@
                                                         <label class="col-sm-2 control-label"
                                                                for="demo-hor-15"><?php echo translate('size'); ?></label>
                                                         <div class="col-sm-6" id="more_size">
-                                                            <?php $size = $row['size'];
-                                                            $sep_size = explode(",", $size);
+                                                            <?php// $size = $row['size'];
+                                                            //$sep_size = explode(",", $size);
                                                             //print_r($sep_color);
-                                                            for ($i = 0; $i < count($sep_size); $i++) {
+                                                            //for ($i = 0; $i < count($sep_size); $i++) {
                                                                 ?>
                                                                 <div class="col-md-12" style="margin-bottom:8px;">
                                                                     <div class="col-md-10">
                                                                         <div class="input-group demo2">
                                                                             <input type="text"
-                                                                                   value="<?php echo $sep_size[$i]; ?>"
+                                                                                   value="<?php //echo $sep_size[$i]; ?>"
                                                                                    name="size[]" class="form-control"/>
                                                                             <span
                                                                                 class="input-group-addon"><i></i></span>
@@ -392,7 +392,7 @@
                                               class="remove_it_v rmc btn btn-danger btn-icon icon-lg icon icon-close"></span>
                                       </span>
                                                                 </div>
-                                                            <?php } ?>
+                                                            <?php //} ?>
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <div id="more_size_btn"
@@ -403,7 +403,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-<<<<<<< HEAD
+
                                         </div>
                                     </div> -->
                                     <div class="col-md-12">
@@ -449,7 +449,7 @@
 
                                     <div id="more_additional_options"></div>
                                     <!--<div class="form-group btm_border">
-=======
+
 
 
                                             <div id="more_additional_options"></div>
