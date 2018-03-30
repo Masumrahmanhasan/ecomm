@@ -62,6 +62,9 @@
                     if (res.msg_type == 'success') {
                         toastr.success(res.message);
                         $(".loading").hide();
+                        setTimeout(function(){
+                            window.location = res.link;
+                        }, 2000);
 
                     } else {
                         $("#msg").html(res);

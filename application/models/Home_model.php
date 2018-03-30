@@ -193,11 +193,65 @@ WHERE p.`brand_id` = b.`id`
 AND p.`product_id` = pi.`product_id`
 $i AND pi.`class`='primary'")->result_array();
     }
+
+
+    public function featured_products()
+    {
+       $query = $this->db->query("SELECT * FROM 
+product AS p, brands AS b,product_image as pi
+WHERE p.`brand_id` = b.`id`
+AND pi.product_id = p.product_id
+AND pi.class= 'primary' AND p.`featured` = 'ok' LIMIT 10")->result_array();
+        return $query;
+
+    }
+    //GETTING MOST SOLD PRODUCTS
+    function most_sold_products()
+    {
+        $result = array();
+        $product = $this->db->get('product')->result_array();
+        foreach ($product as $row) {
+            $result[] = array(
+                'id' => $row['product_id'],
+                'sale' => $this->total_sale($row['product_id'])
+            );
+        }
+        //echo $this->db->last_query();
+        return $result;
+    }
+    function total_sale($product_id, $field = 'qty')
+    {
+        $return = 0;
+        $sales = $this->db->get('sale')->result_array();
+        foreach ($sales as $row) {
+            if ($a = $this->product_in_sale($row['sale_id'], $product_id, $field)) {
+                $return += $a;
+            }
+        }
+        return $return;
+    }
+    function product_in_sale($sale_id, $product_id, $field)
+    {
+        $return = '';
+        $product_details = json_decode($this->Admin_model->get_type_name_by_id('sale', $sale_id, 'product_details'), true);
+        foreach ($product_details as $row) {
+            if ($row['id'] == $product_id) {
+                $return = $row[$field];
+            }
+        }
+        if ($return == '') {
+            return false;
+        } else {
+            return $return;
+        }
+    }
     public function insert_data($table,$data){
         $this->db->insert($table,$data);
         return true;
     }
 
 }
+
+
 
 

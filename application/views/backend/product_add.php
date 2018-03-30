@@ -171,7 +171,7 @@
                                                     <div class="col-md-12" style="margin-bottom:8px;">
                                                         <div class="col-md-10">
                                                             <div class="input-group demo2">
-                                                                <input type="text" value="#ccc" name="color[]" class="form-control" />
+                                                                <input type="text" value="" placeholder="blue" name="color[]" class="form-control" />
                                                                 <span class="input-group-addon"><i></i></span>
                                                             </div>
                                                         </div>
@@ -194,7 +194,7 @@
                                                     <div class="col-md-12" style="margin-bottom:8px;">
                                                         <div class="col-md-10">
                                                             <div class="input-group demo2">
-                                                                <input type="text" value="#ccc" name="size[]" class="form-control" />
+                                                                <input type="text" value="" name="size[]" class="form-control" />
                                                                 <span class="input-group-addon"><i></i></span>
                                                             </div>
                                                         </div>
@@ -558,7 +558,7 @@
             +'      <div class="col-md-12" style="margin-bottom:8px;">'
             +'          <div class="col-md-10">'
             +'              <div class="input-group demo2">'
-            +'		     	   <input type="text" value="#ccc" name="color[]" class="form-control" />'
+            +'		     	   <input type="text" value="" placeholder="blue" name="color[]" class="form-control" />'
             +'		     	   <span class="input-group-addon"><i></i></span>'
             +'		        </div>'
             +'          </div>'
@@ -576,7 +576,7 @@
             +'      <div class="col-md-12" style="margin-bottom:8px;">'
             +'          <div class="col-md-10">'
             +'              <div class="input-group demo2">'
-            +'		     	   <input type="text" value="#ccc" name="size[]" class="form-control" />'
+            +'		     	   <input type="text" value="" name="size[]" class="form-control" />'
             +'		     	   <span class="input-group-addon"><i></i></span>'
             +'		        </div>'
             +'          </div>'
